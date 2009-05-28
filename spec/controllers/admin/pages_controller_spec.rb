@@ -4,7 +4,7 @@ describe Admin::PagesController do
 
   before(:each) do
     activate_authlogic
-    UserSession.create! Factory.build(:admin_user)
+    UserSession.create! Factory.build(:user, :admin => true)
   end
     
   it "should get index sucessfully" do
