@@ -12,28 +12,41 @@ global_nav = Folder.create(:title => 'Global nav', :position => 1, :published =>
 Folder.create(:title => 'Footer nav', :position => 2, :locked => true)
 Folder.create(:title => 'Other pages', :position => 3, :locked => true)
 
-default_attributes = {
-  "parent_id"=>global_nav.id,
+
+def default_attributes
+  {
   "published"=>true, 
   "publish_date"=> 2.days.ago, 
-  "position"=>1, 
-}
+  "position"=>1,
+  "intro" => Faker::Lorem.sentence(10),
+  :body => Faker::Lorem.paragraphs(2).join("\n\n")
+  }
+end
 
-Homepage.create({
+Homepage.create(default_attributes.update({
   "parent_id"=>global_nav.id,
   "published"=>true, 
   "slug"=>"home", 
-  "intro"=>"The homepage intro", 
-  "title"=>"Welcome to our shiny new website", 
-  "body"=>"<p>\r\nLorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus eros nunc, hendrerit vel, consectetuer non, luctus vel, tellus. </p>",
+  "title"=>"Welcome to our site", 
   "slug_path"=>"home", 
   "publish_date"=> 2.days.ago, 
   "position"=>1,
   "nav_title"=>"Home"
-  })
+  }))
 Page.create(default_attributes.update({
-  :title => "About Us",
-  :intro => "We're great"
+  :title => "About Us", :parent => global_nav
 }))
+
+services = Folder.create(default_attributes.update({
+  :title => "Services", :parent => global_nav
+}))
+Page.create(default_attributes.update({
+  :title => 'Programming', :parent => services
+}))
+Page.create(default_attributes.update({
+  :title => 'Design', :parent => services
+}))
+
+
 
 Page.all.each &:save

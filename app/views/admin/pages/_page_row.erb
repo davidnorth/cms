@@ -8,7 +8,7 @@
         <% if page.locked? %>
           <span class="title disabled"><%= page.title %></span>
         <% else %>
-          <%= link_to "<span class=\"title\">#{truncate(page.title,25)}</span>", {:action => 'edit', :id => page.id}, :class => 'title' %>
+          <%= link_to "<span class=\"title\">#{truncate(page.nav_title,25)}</span>", {:action => 'edit', :id => page.id}, :class => 'title' %>
         <% end %>
   </td>
   <td>

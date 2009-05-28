@@ -78,31 +78,6 @@ class Page < ActiveRecord::Base
 
 
 
-  def self.find_published_top_level
-    find_top_level.map{|p| p.published_children}.flatten.select{|p| p.show_in_nav?}
-  end
-
-  def published_children(options = {})
-    find_options = {}
-    if options[:type]
-      find_options[:conditions][0] << 'AND type = ? '
-      find_options[:conditions] << options[:type]
-    end
-    if options[:limit]
-      find_options[:limit] = options[:limit]
-    end
-    if options[:order]
-      find_options[:order] = options[:order]
-    end
-    if options.has_key?(:page)
-      find_options[:page] = options[:page]
-      find_options[:per_page] = options[:per_page]
-      children.published.paginate(find_options)
-    else
-      children.published.find(:all, find_options)
-    end
-  end
-
   def published_children_count
     children.published.count
   end
@@ -125,7 +100,6 @@ class Page < ActiveRecord::Base
     slug == slug_path
   end
 
-
   def children_count
     children.count
   end
@@ -136,7 +110,6 @@ class Page < ActiveRecord::Base
   end
   
   
-
   def nav_title
     if attributes['nav_title'].blank?
       title
