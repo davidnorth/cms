@@ -10,11 +10,11 @@ describe User do
   end
 
   it "should create sucessfully with valid attributes" do
-    Factory.create(:valid_user).should be_valid
+    Factory.create(:user).should be_valid
   end
 
   it "should not be valid with bad attributes" do
-    Factory.build(:invalid_user).should be_invalid
+    Factory.build(:user, :email => 'foo').should be_invalid
   end
   
 end
