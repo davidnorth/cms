@@ -1,6 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
 describe Admin::PagesController do
+  integrate_views
 
   before(:each) do
     activate_authlogic
