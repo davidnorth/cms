@@ -9,7 +9,7 @@ describe User do
   before(:each) do
   end
 
-  it "should succeed creating a new :valid_user from the Factory" do
+  it "should create sucessfully with valid attributes" do
     Factory.create(:valid_user).should be_valid
   end
 
