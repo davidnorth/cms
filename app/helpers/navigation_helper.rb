@@ -20,26 +20,6 @@ module NavigationHelper
     content_tag('ul', "\n#{list_items.join("\n")}\n", :class => 'nav')
   end
 
-  def render_list_footnav(parent = Page.find_by_title('Footer nav'), depth = 1)
-    pages = parent.published_children_for_nav
-    return '' if pages.empty?
-    list_items = pages.map do |page|
-      current = @root_page == page || @page == page || (@page and @page.ancestors.include?(page) and !@page.top_level?)
-      open = (current and page.published_children_for_nav.length > 0 and !page.archive?)      
-      
-      css_classes = []
-      css_classes << 'current' if current
-      css_classes << 'withsubnav' if open
-      css_classes << 'last' if page == pages.last
-      css_class = css_classes.join(' ') unless css_classes.empty?
-
-      item_contents = link_to_page(page)
-      item_contents << render_list_nav(page, depth+1) if open
-      '  '*depth + content_tag('li', item_contents, :class => css_class)
-    end
-    content_tag('ul', "\n#{list_items.join("\n")}\n", :class => 'footnav')
-  end
-
   def render_global_nav
     pages = Page.find_by_title('Global nav').published_children_for_nav
     list_items = pages.map do |page|
