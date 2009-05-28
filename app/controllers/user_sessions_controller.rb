@@ -8,7 +8,7 @@ class UserSessionsController < Public::BaseController
   
   def create
     @user_session = UserSession.new(params[:user_session])
-    if @user_session.save
+    if @user_session.save!
       flash[:notice] = "Successfully logged in"
       redirect_to admin_dashboard_path
     else

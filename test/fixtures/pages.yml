@@ -1,0 +1,10 @@
+global_nav:
+  title: Global Nav
+  published: 1
+homepage:
+  title: Welcome
+  parent: :global_nav
+  published: 1
+  position: 1
+  slug: home
+  slug_path: home
