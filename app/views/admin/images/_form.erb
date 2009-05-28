@@ -1,14 +1,10 @@
 <%= hidden_field_tag :popup, params[:popup] %>
 <fieldset>
   <p class="title">
-    <%= f.label :title %> (used for alt text)<br />
-    <%= f.text_field :title, :size => 60, :class => 'large' %>
-    <%= f.error_message_on :title %>    
+    <%= f.label :alt, "Alt text" %><br />
+    <%= f.text_field :alt, :size => 60, :class => 'large' %>
+    <%= f.error_message_on :alt %>    
   </p>
-
-<%= render :partial => 'admin/shared/image_upload_widget', 
-  :locals => {:model => :image, :column => 'file', :label_text => 'Image'}
- %>
 
   <div class="actions">
     <%= link_to '&larr; Cancel and go back', :action => 'index', :popup => params[:popup] %> &nbsp;
