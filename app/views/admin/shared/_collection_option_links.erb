@@ -1,0 +1,6 @@
+<p>
+  <%= link_to image_tag('/images/admin/plus.png')+" Add a new #{model_name.humanize}", new_object_url %> &nbsp;
+  <% if @controller.respond_to?(:reorder) %>
+    <%= link_to image_tag('/images/admin/reorder.gif')+" Reorder #{model_name.humanize.pluralize}", :action => 'reorder' %>
+  <% end %>
+</p>

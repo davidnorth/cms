@@ -1,0 +1,14 @@
+<fieldset>
+
+  <%= render :partial => 'admin/pages/common_fields', :locals => {:f => f} %>  
+
+  <table>
+    <%= f.field :title, :label => 'Question', :helper_options => {:size => 60} %>
+    <%= f.field :answer, :helper => :text_area, :helper_options => {:rows => 16, :cols => 60} %>
+  </table>
+  <%= render :partial => 'admin/shared/textile_help' %><br />
+
+</fieldset>
+
+
+

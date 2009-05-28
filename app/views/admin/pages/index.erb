@@ -1,0 +1,57 @@
+<% @page_title = 'Site Structure' %>
+
+<p>Here you can manage the site&#8217;s navigation and content.</p>
+
+
+<table id="site-map" class="index">
+<thead>
+  <tr>
+    <th>Title</th>
+    <th>Children</th>
+    <th>Type</th>
+    <th>&nbsp;</th>
+    <th>&nbsp;</th>
+    <th>&nbsp;</th>
+  </tr>
+</thead>
+<tbody>
+<%= page_rows @pages %>
+</tbody>
+</table>
+
+
+
+<fieldset class="modal" id="type_chooser" style="display:none">
+  <p>
+    <label>Choose page type:</label><br />
+    <select name="type" id="type_select">
+    </select>
+  </p>
+  <p>
+    <input type="button" value="Add page" id="type_chooser_button" /> 
+    <%= link_to_function 'Cancel', "$('type_chooser').hide()" %>
+  </p>
+</fieldset>
+
+<p>
+
+<script type="text/javascript">
+// <![CDATA[
+  
+sitemap = new SiteMap('site-map');
+
+expand = [<%= @expand_ids %>];
+
+// Hide all branches
+expanders = document.getElementsByClassName('expander');
+expanders.each(function(expander){
+  /expander-(\d+)/i.test(expander.id)
+  number  = RegExp.$1.toInteger()
+  // test number against list of what should be expanded by default here
+  if(!expand.include(number)){
+    sitemap.hideBranchByNumber(number);
+  }
+});
+
+// ]]>
+</script>

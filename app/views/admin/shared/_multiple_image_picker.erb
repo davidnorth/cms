@@ -1,0 +1,8 @@
+<% label ||= 'Images' %>
+<p>
+  <label><%= label %></label>
+  <div id="images_container">
+    <%= render :partial => 'images', :locals => {:images => @page.images} %>
+  </div>
+  <input type="button" onclick="addImage('page_images')" value="Add" />
+</p>

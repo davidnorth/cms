@@ -1,0 +1,18 @@
+<fieldset>
+
+  <div class="title">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+
+  <%= render :partial => 'admin/pages/common_fields', :locals => {:f => f} %>  
+
+  <%= render :partial => 'admin/pages/meta_fields', :locals => {:f => f} %>
+
+  <%= render :partial => 'admin/pages/page_content_fields', :locals => {:f => f} %>
+
+  <%= render :partial => 'admin/shared/multiple_image_picker', :locals => {:label => 'Gallery images'} %>
+
+</fieldset>
+
+

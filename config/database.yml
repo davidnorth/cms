@@ -1,0 +1,19 @@
+development:
+  adapter: mysql
+  database: rails_cms_dev
+  username: root
+  password: 
+  host: localhost
+
+test:
+  adapter: mysql
+  database: rails_cms_test
+  username: root
+  password: 
+
+production:
+  adapter: mysql
+  database: cms
+  username: root
+  password: 
+  host: localhost

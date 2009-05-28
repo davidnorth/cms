@@ -1,0 +1,19 @@
+<p><%= link_to '&larr; Finished reordering', :action => 'index' %></p>
+
+<fieldset>
+  <% if @records.length == 0 %>
+    <p>The store has no sections</p>
+  <% elsif @records.length == 1 %>
+    <p>You can&#8217;t reorder these items since there is only one</p>
+  <% else %>
+    <div id="items">
+    <% for record in @records %>
+      <div class="item" id="product_<%= record.id %>">
+        <%= image_tag('/images/admin/drag.gif', :class => 'drag') %> 
+        <%= record %>
+      </div>
+    <% end %>
+    </div>
+    <%= sortable_element 'items', :tag => 'div', :handle => 'drag', :url => {:action => params[:action]} %>
+  <% end %>
+</fieldset>

@@ -1,0 +1,9 @@
+<% @page_title = "Creating new #{human_model_name.humanize}" %>
+
+<%= partial 'admin/shared/object_option_links', :object => object %>
+
+<% multipart ||= false %>
+
+<% create_form :multipart => multipart do |f| %>
+  <%= partial 'form', :f => f %>
+<% end %>

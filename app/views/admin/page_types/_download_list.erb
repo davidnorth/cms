@@ -1,0 +1,11 @@
+<p>
+  <%= label :page, :intro %><br />
+  <%= text_area :page, :intro, :rows => 3, :cols => 60 %>
+</p>
+
+
+<p>
+  <%= label :page, :body, 'Description' %><br />
+  <%= render :partial => 'admin/shared/textile_help' %><br />
+  <%= text_area :page, :body, :rows => 15, :cols => 60, :class => 'widgEditor' %>
+</p>

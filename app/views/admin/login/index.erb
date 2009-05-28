@@ -1,0 +1,21 @@
+<%= form_tag %>
+<fieldset id="login">
+
+<p>
+  <label for="email" class="textfield">E-mail address</label><br />
+	<%= text_field_tag "email", params[:email], :size => 35, 'class' => 'textfield' %>
+</p>
+
+<p>
+  <label for="password" class="textfield">Password</label><br />
+  <%= password_field_tag "password", params[:password], :size => 35, 'class' => 'textfield' %>
+</p>
+
+<div class="actions"><input type="submit" value="Login" /></div>
+
+</fieldset>
+</form>
+
+<script type="text/javascript">
+document.getElementById('email').focus();
+</script>

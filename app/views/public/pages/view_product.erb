@@ -1,0 +1,29 @@
+<%- content_for :sidebar do -%>
+<div id="sidenav">
+<h2>Products in this category:</h2>
+<ul class="nav">
+	<%- for product in @page.products do -%>
+		<%- if product.slug == params[:product] 
+			css_class = "selected" 
+			else 
+				css_class = "" 
+			end -%>
+		<li><%= link_to product.name, "/"+product.products_category.slug_path+"/"+product.slug, :class => css_class %></li>
+	<%- end -%>
+</ul>
+</div>
+<%- end -%>
+
+<%= render :partial => 'public/page_types/shared/filter' %>
+
+<h1><%= h @product.name %></h1>
+<div id="intro"><p><%= @product.intro %></p></div>
+<%- if @product.image1 -%>
+	<%= uploaded_image(@product, "image1", 'product') %>
+<%- end -%>
+
+<%= @product.body %>
+
+<%- if @product.brochure -%>
+		<p id="pdf"><%= link_to "Download PDF", url_for_file_column("product", "brochure") %> with full details about the <strong>"<%= @product.name %>"</strong>.</p>
+<%- end -%>

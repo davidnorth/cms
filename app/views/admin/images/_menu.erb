@@ -1,0 +1,9 @@
+<p>
+  <%= link_to_with_icon 'add', 'Upload a new image', new_admin_image_path(:popup => params[:popup]) %> &nbsp; 
+  <% if @image and !@image.new_record? %>
+    <%= link_to '&larr; Back to image list', admin_images_path(:popup => params[:popup]) %> &nbsp; 
+    <%= link_to_with_icon 'view', 'View', admin_image_path(@image.id, :popup => params[:popup]) %> &nbsp; 
+    <%= link_to_with_icon 'edit', 'Resize/crop', crop_settings_admin_image_url(@image, :popup => params[:popup]) %> &nbsp; 
+    <%= link_to_with_icon 'delete', 'Delete this image', admin_image_path(@image, :popup => params[:popup]), :method => :delete, :confirm => 'Are you sure?' %> &nbsp; 
+  <% end %>
+</p>

@@ -1,0 +1,18 @@
+<div id="list">
+  
+<%= render :partial => 'admin/generic/list_edit_list' %>
+
+</div>
+
+
+<%= form_remote_tag(:loading => "$('new_loading').show()", :url => {:action => "add_#{@model}"}) %>
+<fieldset>
+  <legend>Add a new <%= @model.to_s.humanize.downcase %></legend>
+  <div>
+    <label for="<%= @model %>_name">Name</label>
+    <%= text_field @model, :name %>
+    <input type="submit" value="Add" />
+    <img src="/images/admin/spinner.gif" id="new_loading" style="display:none" />
+  </div>
+</fieldset>
+</form>

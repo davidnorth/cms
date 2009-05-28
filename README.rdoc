@@ -1,0 +1,10 @@
+=Rails CMS (Working Title)
+
+A minimalist CMS with maximum flexibility. Designed for small teams and web developers.
+
+==Quick Start
+
+  cp config/database.yml.example config/database.yml
+  rake db:create
+  rake db:boostrap
+  script/server

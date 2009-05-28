@@ -1,0 +1,16 @@
+<% if images.empty? %>
+  <p>No images added yet.</p>
+<% else %>
+
+<div id="images">
+  <% for image in images %>
+    <table class="thumb" id="image_<%= image.id %>" style="float:left;margin-right:5px"><tr><td valign="middle">
+      <%= uploaded_image image,'file','thumb' %><br />
+      <span><%= link_to_remote(image_tag('/images/admin/delete.gif'), :url => {:action => 'delete_image', :id => image}) %></span>
+    </td></tr></table>
+  <% end %><br clear="left" />
+</div>
+
+<%= sortable_element 'images', :url => {:action => 'reorder_images'}, :tag => 'table', :overlap => 'horizontal', :constraint => '' %>
+
+<% end %>

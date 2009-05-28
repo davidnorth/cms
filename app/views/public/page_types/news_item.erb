@@ -1,0 +1,16 @@
+<% content_for :sidebar do %>
+<h2><%= @root_page %></h2>
+<%= render_list_nav @root_page %>
+<%= render :partial => 'public/page_types/shared/side_feature' %>
+<% end %>
+
+<h1><%= h @page.title %></h1>
+	<% if @page.intro %>
+		<div id="intro"><p><%= h @page.intro %></p></div>
+	<% end %>
+	<% if @news_item.image1 %>
+		<%= uploaded_image(@news_item.image1, :file, 'big') %>
+	<% end %>
+ 	<%= @page.body %>
+ 	<%= render :partial => 'public/shared/file_uploads' %>
+ 	<p id="back"><%= link_to " &laquo; back to news index", url_for_page(@page.parent) %></p>

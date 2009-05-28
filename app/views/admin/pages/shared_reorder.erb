@@ -1,0 +1,22 @@
+<% 
+if @parent
+  @page_title = "Reordering child items for &#8220;#{@page}&#8221; "
+else
+  @page_title = "Reordering root items"
+end
+ %>
+<fieldset>
+<div id="items">
+<% for page in @pages %>
+  <div id="item_<%= page.id %>">
+    <%= image_tag('/images/admin/drag.gif', :class => 'drag') %> &nbsp; 
+    <%= page.title %>
+  </div>
+<% end %>
+</div>
+
+<%= sortable_element 'items', :tag => 'div', :handle => 'drag', :url => {:action => 'reorder'} %>
+
+<p><%= link_to '&larr; Finished reordering', :action => 'index' %></p>
+
+</fieldset>

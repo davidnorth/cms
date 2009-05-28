@@ -1,0 +1,12 @@
+<% content_for :sidebar do %>
+<%= render :partial => 'public/page_types/shared/side_feature' %>
+<% end %>
+
+<%= render :partial => 'public/page_types/shared/page_body' %>
+
+<% for download in @downloads %>
+<h2><%= link_to_page download %></h2>
+<p><%= download.intro %></p>
+<p class="readmore"><%= link_to 'View details', url_for_page(download) %></p>
+<% end %>
+<%= will_paginate @downloads %>

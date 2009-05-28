@@ -1,0 +1,6 @@
+log
+tmp
+public/upload
+upload
+.autotest
+db/development_structure.sql

@@ -1,0 +1,37 @@
+<fieldset>
+
+  <p>
+    <%= f.label :firstname %><br />
+    <%= f.text_field :firstname %>
+    <%= f.error_message_on :firstname %>
+  </p>
+  <p>
+    <%= f.label :lastname %><br />
+    <%= f.text_field :lastname %>
+    <%= f.error_message_on :lastname %>
+  </p>
+
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+    <%= f.error_message_on :email %>
+  </p>
+  
+  <p>
+    <%= f.label :password %><% if params[:action] == 'edit' %> (Leave blank to keep existing)<% end %><br />
+    <%= f.password_field :password %>
+    <%= f.error_message_on :password %>
+  </p>
+
+  <p>
+    <%= f.label :password_confirmation, 'Confirm password' %><br />
+    <%= f.password_field :password_confirmation %>
+    <%= f.error_message_on :password_confirmation %>
+  </p>
+
+  <div class="actions">
+    <%= link_to '&larr; Back to user list', :action => 'index' %>
+    <input type="submit" value="Save changes" />
+  </div>
+  
+</fieldset>

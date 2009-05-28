@@ -1,0 +1,21 @@
+<%= hidden_field_tag :popup, params[:popup] %>
+<fieldset>
+
+  <table>
+    <%= f.field :title %>
+    <%= f.field :category, :helper => :simple_collection_select %>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+        <%= render :partial => 'admin/shared/file_upload_widget', :locals => {:model => :file_upload, :column => 'file', :label_text => 'File'} %>
+      </td>
+    </tr>
+  </table>
+
+
+  <div class="actions">
+    <%= link_to '&larr; Back to file list', :action => 'index', :popup => params[:popup] %> &nbsp;
+    <input type="submit" value="Save changes" />
+  </div>
+  
+</fieldset>
