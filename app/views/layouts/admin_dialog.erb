@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <title><%= @page_title %> - <%= SITE_NAME %> Administration</title>
+  <link href="/stylesheets/admin.css" media="screen" rel="Stylesheet" type="text/css" />
+  <%= javascript_include_tag :defaults, 'string', 'admin', 'swfobject' %>
+</head>
+<body class="dialog">
+
+<div id="main">
+  <div id="content">
+<%= render_flash %>
+<h1><%= @page_title %></h1>
+
+<%= yield %>
+
+  </div>
+</div>
+
+
+
+<div id="footer">
+  <p>&nbsp;</p>
+</div>
+
+
+<script type="text/javascript">
+window.focus();
+</script>
+
+</body>
+</html>

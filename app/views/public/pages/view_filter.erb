@@ -1,0 +1,8 @@
+<h1>Product Filter</h1>
+<% if @filtered_products.length > 0 -%>
+<% for product in @filtered_products -%>
+	<%= render :partial => "public/page_types/product", :locals => {:product => product} %>
+<% end %>
+<% else -%>
+<p>Sorry, there are no products to display</p>
+<% end -%>

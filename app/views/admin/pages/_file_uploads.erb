@@ -1,0 +1,12 @@
+<ul>
+<% for file_upload in file_uploads %>
+	<li><%= file_upload.title %> &nbsp; 
+	<%= link_to_remote(image_tag("/images/admin/minus.png") + " Remove", {:update => 'fileUploadsList', :url => {:action => 'delete_file_upload', :id => params[:id], :file_upload => file_upload}}, :class => 'adminActionLink' ) %></li>
+<% end %>
+</ul>
+
+<script type="text/javascript">
+if(typeof(filePickerDialog) != "undefined"){
+	filePickerDialog.close();
+}
+</script>

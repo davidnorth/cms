@@ -1,0 +1,19 @@
+<% @page_title = 'Login' %>
+
+<% form_for @user_session  do |f| %>
+<fieldset id="login">
+<p>
+  <label for="email" class="textfield">E-mail address</label><br />
+	<%= f.text_field :email, :size => 35, 'class' => 'textfield' %>
+</p>
+<p>
+  <label for="password" class="textfield">Password</label><br />
+	<%= f.password_field :password, :size => 35, 'class' => 'textfield' %>
+</p>
+<div class="actions"><input type="submit" value="Login" /></div>
+</fieldset>
+<% end %>
+
+<script type="text/javascript">
+document.getElementById('email').focus();
+</script>

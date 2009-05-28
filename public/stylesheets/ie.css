@@ -1,0 +1,43 @@
+/* 
+	Sitename
+	designed and created by name
+*/
+/*
+	css document for IE versions less than IE7
+*/
+div#wrap {
+	padding-bottom: 5px;
+}
+div#content_main, div#footer div.column {
+	margin-left: 10px;
+}
+div#content_sub, div#footer div.columnr {
+	margin-right: 10px;
+}
+div#footer {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+}
+div#footer p {
+	font-size: 1.1em;
+}
+ul.nav {
+	margin-left: 10px;
+}
+div#content_main ol, div#content_main ul {
+	margin-left: 10px;
+}
+ul.nav li ul li a {
+	padding-left: 10px;
+}
+ul.nav li.current ul li.current a {
+	display: block;
+	background-position: 5px center;
+}
+ol#answers li {
+	background-repeat: no-repeat;
+	background-position: left 10px;
+	background-color: #e4e4e4;
+	margin-left: -10px;
+}

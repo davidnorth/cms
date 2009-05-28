@@ -1,0 +1,17 @@
+<% content_for :sidebar do %>
+<%= render :partial => 'public/page_types/shared/side_feature' %>
+<% end %>
+
+<%= render :partial => 'public/page_types/shared/page_body' %>
+<ol id="questions">
+  <% for question in @page.visible_children %>
+    <li><a href="#<%= question.id %>"><%= question.question %></a></li>
+  <% end %>
+</ol>
+
+<h2>Answers</h2>
+<ol id="answers">
+  <% for question in @page.visible_children %>
+    <li id="<%= question.id %>" class="<%= cycle("one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen","twenty") -%>"><%= question.answer %></li>
+  <% end %>
+</ol>

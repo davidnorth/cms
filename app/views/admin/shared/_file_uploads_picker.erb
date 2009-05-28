@@ -1,0 +1,8 @@
+<p>
+  <label>Related file uploads</label>
+  <div id="fileUploadsList">
+    <%= render :partial => 'file_uploads', :locals => {:file_uploads => @page.file_uploads} %>
+  </div>
+
+  <input type="button" onclick="pickFile()" value="Add" />
+</p>

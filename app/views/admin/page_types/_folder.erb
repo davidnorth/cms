@@ -1,0 +1,10 @@
+<fieldset>
+
+  <div class="title">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+
+  <%= render :partial => 'admin/pages/common_fields', :locals => {:f => f} %>
+
+</fieldset>

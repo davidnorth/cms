@@ -1,0 +1,13 @@
+<p>
+  <%= label model, column, label_text %><br />
+  <% record = instance_variable_get("@#{model}") %>
+  <% method = "#{column}_id".to_sym %>
+  <input type="button" onclick="pickImage('<%= model %>_<%= method %>')" value="Pick" />
+  <input type="button" onclick="$('<%= model %>_<%= method %>').value='';$('<%= model %>_<%= method %>_preview').src='/images/admin/null.gif'" value="Clear" />
+  <br />
+  <% preview_src = record.send(column) ? uploaded_file_url(record.send(column),'file','thumb') : "/images/admin/null.gif" %>
+  <table class="thumb"><tr><td valign="middle">
+    <img id="<%= model %>_<%= method %>_preview" src="<%= preview_src %>" alt="" />
+  </td></tr></table>
+  <%= hidden_field model,method %>
+</p>

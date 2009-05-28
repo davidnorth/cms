@@ -1,0 +1,18 @@
+<% content_for :sidebar do %>
+<%= render :partial => 'public/page_types/shared/side_feature' %>
+<% end %>
+
+<%= render :partial => 'public/page_types/shared/page_body' %>
+
+<% for news_item in @news %>
+<div class="divider">
+	<h2><%= link_to "#{news_item.title}", url_for_page(news_item) %></h2>
+	<p class="date"><%= format_date news_item.publish_date %></p>
+	<% if news_item.image1 %>
+		<%= link_to uploaded_image(news_item.image1, :file, 'small'), url_for_page(news_item) %>
+	<% end %>
+	<p><%= news_item.intro %></p>
+	<p class="readmore"><%= link_to 'Read the rest of this entry', url_for_page(news_item) %></p>
+	</div>
+	<% end %>
+<%= will_paginate @news %>

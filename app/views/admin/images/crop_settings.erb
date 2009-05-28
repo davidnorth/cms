@@ -1,0 +1,12 @@
+<% @page_title = 'Resize and crop image' %>
+
+<%= render :partial => 'menu' %>
+
+<% image_data_url = flex_crop_url(@image, '_cms_session_id' => session.session_id).gsub('&amp;','&') %>
+
+<%= 
+  embed_flash("/flash/admin/ImageCropper.swf", 
+    {:width => "900",:height => "800", :version => "8"},
+    {:image_data_url => image_data_url}
+    ) 
+%>  

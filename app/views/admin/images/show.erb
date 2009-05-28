@@ -1,0 +1,51 @@
+<%= render :partial => 'menu' %>
+
+<p>View size: 
+  <select name="size" id="size" onchange="change_size()">
+  <%= options_for_select Image::SIZES.map {|size| 
+    [size.humanize, @image.image.url(size)] } %>
+  </select>
+</p>
+
+<p align="center"><%= image_tag(@image.image.url(Image::SIZES.first), :id => 'image_preview') %><br />
+  
+  <small>Image src: <span id="image_src"><%= @image.image.url(Image::SIZES.first) %></span></small>
+  </p>
+
+<% if params[:popup] and params[:collection].nil? %>
+<%= javascript_include_tag 'tiny_mce/tiny_mce_popup' %>
+<p><%= link_to_function "#{image_tag('/images/admin/yes.gif')} Use this image", "pickImage(#{@image.id},'#{@image.image.url('cropped')}')" %></p>
+<% end %>
+
+<script type="text/javascript">
+
+window.focus();
+
+function change_size() {
+  src = $('size').options[$('size').selectedIndex].value;
+  $('image_preview').src = src;
+  $('image_src').innerHTML = src;
+}
+
+function makeAttrib(attrib, value) {
+	return ' ' + attrib + '="' + value + '"';
+}
+
+function pickImage(id)
+{  
+  // create a simple image object
+  image = {
+    id:       <%= @image.id %>,
+    src: $('image_preview').src.replace(/\?.*$/,''),
+    thumb_src:        '<%= @image.image.url('thumb') %>',
+    alt:       '<%= @image.to_s %>'
+    }
+  // pass this back to the callback defined when this popup was created
+  try {
+    window.opener.imageLibraryCallback(image,window);
+  } catch (e) {
+  }
+  //window.close();
+}
+
+</script>

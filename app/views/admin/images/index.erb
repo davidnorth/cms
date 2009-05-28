@@ -1,0 +1,21 @@
+<%= render :partial => 'menu' %>
+
+<table class="images">
+<% @images.in_groups_of(5) do |row| -%>
+  <tr>
+  <% for image in row -%>
+    <td>
+        <% if image.nil? -%>
+          &nbsp;
+        <% else %>
+          <table class="thumb"><tr><td>
+          <%= link_to image_tag(image.image.url('thumb')), admin_image_path(image, :popup => params[:popup]) %>
+          </td></tr></table>
+        <% end %>
+    </td>
+  <% end -%>
+  </tr>
+<% end -%>
+</table>
+
+<%= will_paginate @images %>

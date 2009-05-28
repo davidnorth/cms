@@ -1,0 +1,17 @@
+<% content_for :sidebar do %>
+<%= render :partial => 'public/page_types/shared/side_feature' %>
+<% end %>
+
+<%= render :partial => 'public/page_types/shared/page_body' %>
+
+  <% for link in @page.visible_children %>
+    <div class="link">
+	<% unless link.images.empty? %>
+		  <%= uploaded_image link.images.last, 'file', 'thumb' %>
+	<% end %>
+	<p class="linkad"><a href="<%= link.linkaddress %>" target="_blank"><%= link.linkname %></a></p>
+	<p><%= link.linkdescription %></p>
+	</div>
+  <% end %>
+
+<%= will_paginate @links %>

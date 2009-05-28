@@ -1,0 +1,14 @@
+<% record = instance_variable_get("@#{model}") %>
+<p>
+  <%= label model, column, label_text %><br />
+  <%= file_column_field(model.to_s, column) %>
+  <%= error_message_on model, column %>
+
+  <% if record.send(column) and File.exists?(record.send(column)) %>
+  <p>
+    Existing file: <%= File.basename(record.send(column)) %>
+  </p>
+  <% else %>
+    <p>No file uploaded yet</p>
+  <% end %>
+</p>

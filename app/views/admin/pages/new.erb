@@ -1,0 +1,5 @@
+<% @page_title = "Creating nnew #{@page.class.to_s.underscore.humanize.downcase}" %>
+
+<% create_form do |f| %>
+  <%= partial 'form', :f => f %>
+<% end %>

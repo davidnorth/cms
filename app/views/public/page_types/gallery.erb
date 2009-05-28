@@ -1,0 +1,28 @@
+<% content_for :head do %>
+  <link rel="stylesheet" href="/stylesheets/lightbox.css" type="text/css" media="screen" />
+  <script type="text/javascript" src="/javascripts/prototype.js"></script>
+  <script type="text/javascript" src="/javascripts/scriptaculous.js?load=effects,builder"></script>
+  <script type="text/javascript" src="/javascripts/lightbox.js"></script>
+<% end %>
+
+<% content_for :sidebar do %>
+	<h2><%= @root_page %></h2>
+	<%= render_list_nav @root_page %>
+	<%= render :partial => 'public/page_types/shared/side_feature' %>
+<% end %>
+
+<%= render :partial => 'public/page_types/shared/page_body' %>
+
+<% unless @page.images.empty? %>
+<ul class="thumbslist">
+<% for image in @page.images -%>
+  <li>
+    <a href="<%= uploaded_file_url image, 'file', 'lightbox' %>" rel="lightbox[group]" title="">
+  	  <%= uploaded_image image, 'file', 'gallery_thumb' %>
+    </a>
+  </li>
+<% end -%>
+</ul>
+<% end %>
+
+<p id="back"><%= link_to " &laquo; back to #{@page.parent.nav_title}", url_for_page(@page.parent) %></p>

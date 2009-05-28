@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title><%= @page_title %>-<%= SITE_NAME %></title>
+<%= tag 'meta', :content => @meta_keywords, :name => 'keywords' unless @meta_keywords.blank? %><%= tag 'meta', :content => @meta_description, :name => 'description' unless @meta_description.blank? %>
+<!-- Meta Tags -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- Favicon -->
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<!-- CSS -->
+<link rel="stylesheet" href="/stylesheets/main.css" type="text/css" media="screen,projection" />
+<!--[if IE]>
+<link rel="stylesheet" href="/stylesheets/ie_all.css" type="text/css" media="screen,projection" />
+<![endif]-->
+<!--[if !IE 7]>
+<link rel="stylesheet" href="/stylesheets/ie.css" type="text/css" media="screen,projection" />
+<![endif]-->
+<link rel="stylesheet" href="/stylesheets/print.css" type="text/css" media="print" />
+<% unless @news_rss.nil? or !@news_rss.visible %>
+<link href="<%= url_for_page(@news_rss) %>.rss" rel="alternate" title="" type="application/rss+xml" />
+<% end %>
+<!-- Javascript -->
+<%= yield :head %>
+</head>
+<% 
+@body_id ||= 'standard' 
+@body_class ||= '' 
+%>
+<body id="<%= @body_id %>" class="<%= @body_class %>">
+<div id="wrap">
+  <div id="branding"> 
+  	<a href="/" id="logo" title="return to homepage"><img src="/skin/logo.jpg" alt="Company logo" /></a>
+    <p id="strapline">Strapline Here</p>
+	<p class="rss"><a href="/news.rss" title="Subscribe to our rss feed">Subscribe to our RSS feed</a></p>
+  </div>
+	<%= render_global_nav %>
+  <div id="content_main">
+  	<%= render_breadcrumb %>
+  	<%= render_flash %>
+
+  	<%= yield %>
+
+  </div>
+  <div id="content_sub">
+  <%= yield :sidebar %>
+  </div>
+  <div id="footer">
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="columnr">Address</div>
+    <div class="clear"></div>
+  </div>
+<%= render_list_footnav %>
+<p class="built">site by <a id="bs" href="http://www.bluestormnewmedia.co.uk" title="Visit the bluestorm website"><img src="/skin/bslogo.jpg"/></a></p>
+</div>
+</body>
+</html>

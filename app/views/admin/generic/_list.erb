@@ -1,0 +1,36 @@
+<% if collection.length > 0 %>
+<table class="index">
+  <tr>
+<% for column in list_columns -%>
+    <th><%= column ==  :to_s ? 'Name' : column.to_s.humanize %></th>
+<% end -%>
+    <th>&nbsp;</th>
+  </tr>
+<% for object in collection %>
+<tr>
+<% for column in list_columns -%>
+    <td>
+<%=
+  value = object.send(column)
+  case value.class.to_s
+  when 'TrueClass'
+    'yes'
+  when 'FalseClass'
+    'no'
+  when *['Time','Date']
+    value.to_s(:short)
+  else
+    truncate(value.to_s,40)
+  end
+%>
+    </td>
+<% end -%>
+    <td class="actions" align="right">
+      <%= link_to_with_icon 'edit', 'Edit', edit_object_url(object) %> &nbsp;
+      <%= link_to "#{image_tag('/images/admin/delete.gif')} Delete", object_url(object), :method => :delete, :confirm => 'Are you sure?' %> &nbsp; 
+    </td>
+  </tr>
+<% end %>
+</table>
+<%= will_paginate collection %>
+<% end %>

@@ -1,0 +1,12 @@
+<% if @page.file_uploads.length > 0 %>
+<ul>
+<% for file_upload in @page.file_uploads %>
+<% if File.exists?(file_upload.file) %>
+	<li class="download <%= file_upload.filetype %>">
+      <%= link_to file_upload.title, uploaded_file_url(file_upload,'file'), :target => '_blank' %>
+      (<%= file_upload.filetype %>, 
+       <%= number_to_human_size file_upload.filesize %>)</li>
+<% end %>
+<% end %>
+</ul>
+<% end %>

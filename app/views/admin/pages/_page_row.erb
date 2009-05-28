@@ -1,0 +1,55 @@
+<% has_children = (page.children.count > 0 and ! page.archive?) %>
+<tr id="page-<%= page.id %>" class="node level-<%= depth %> <%= has_children ? 'children-visible' : 'no-children' %>">
+  <td class="page" style="padding-left: <%= depth*30+(has_children ? 4 : 32) %>px">
+<% if has_children -%>
+      <img align="center" id="expander-<%= page.id %>" alt="toggle children" class="expander" src="/images/admin/collapse.png" title="" />
+<% end -%>
+        <img align="center" alt="page-icon" class="icon" src="/images/admin/page.png" /> 
+        <% if page.locked? %>
+          <span class="title disabled"><%= page.title %></span>
+        <% else %>
+          <%= link_to "<span class=\"title\">#{truncate(page.title,25)}</span>", {:action => 'edit', :id => page.id}, :class => 'title' %>
+        <% end %>
+  </td>
+  <td>
+    <% if page.children_count > 0 %>
+      <%= pluralize(page.children_count,'child') %> 
+      <% if page.archive? %>
+        <%= link_to '(view)', :action => 'children', :id => page.id %>
+      <% elsif page.children_count > 1 %>
+        <%= link_to '(reorder)', :action => 'reorder_children', :id => page.id %>
+      <% end %>
+    <% end %>
+  </td>
+  <td><%= page.attributes['type'].to_s.underscore.humanize %></td>
+  <td>
+    <% if page.visitable? %>
+      <%= link_to_with_icon 'view', 'View in site', '/'+page.slug_path.to_s, :target => '_blank' %>
+    <% else %>
+      <%= link_to_with_icon 'view', 'View in site'  %>
+    <% end %>
+  </td>
+  <td>
+    <% if page.can_have_children? %>
+
+      <% if page.allowed_child_types.length  == 1 %>
+        <%= link_to_with_icon 'add', 'Add child', new_admin_page_path(:parent => page.id) %>
+      <% else %>
+        <% type_args_string = page.allowed_child_types.map{|t| "'#{t}'"}.join(',') %>
+        <%= link_to_function("#{image_tag('/images/admin/add.gif')} Add child", 
+          "showTypeChooser(#{page.id},#{type_args_string})"
+        ) %>
+      <% end %>
+
+    <% else %>
+      <%= link_to_with_icon 'add', 'Add child' %>
+    <% end %>    
+  </td>
+  <td>
+    <% if page.deleteable? and !page.locked? %>
+      <%= link_to_with_icon 'delete', 'Delete', admin_page_path(page), :method => :delete, :confirm => "Are you sure? This can't be undone" %>
+    <% else %>
+      <%= link_to_with_icon 'delete', 'Delete' %>
+    <% end %>
+  </td>
+</tr>

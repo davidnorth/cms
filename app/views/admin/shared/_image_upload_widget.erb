@@ -1,0 +1,16 @@
+<% record = instance_variable_get("@#{model}") %>
+<p>
+  <%= label model, column, label_text %><br />
+  <%= file_column_field(model.to_s, column) %>
+  <%= error_message_on model.to_s, column %>
+
+  <% if record.send(column) and File.exists?(record.send(column)) %>
+  <p>Existing image: &nbsp; 
+    <table class="thumb"><tr><td valign="middle">
+      <img src="<%= url_for_file_column(model.to_s,column,'thumb') %>" alt="" /><br />
+    </td></table>
+  </p>
+  <% else %>
+    <p>No image uploaded yet</p>
+  <% end %>
+</p>

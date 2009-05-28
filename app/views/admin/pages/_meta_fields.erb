@@ -1,0 +1,19 @@
+<%= link_to_function '&raquo; Show extra fields', "visibilityToggle(this,'extra_fields')" %>
+<div style="display:none" id="extra_fields">
+  <div>
+    <%= f.label :nav_title, 'Nav title' %> (standard title will be used if left blank)<br />
+    <%= f.text_field :nav_title, :size => 80, :style => "width:100%" %>
+  </div>
+  <div>
+    <%= f.label :meta_title, 'Title tag' %><br />
+    <%= f.text_field :meta_title, :size => 80, :style => "width:100%" %>
+  </div>
+  <div>
+    <%= f.label :meta_keywords, 'Keywords' %><br />
+    <%= f.text_field :meta_keywords, :size => 80, :style => "width:100%" %>
+  </div>
+  <div>
+    <%= f.label :meta_description, 'Description' %><br />
+    <%= f.text_field :meta_description, :size => 80, :style => "width:100%" %>
+  </div>
+</div>

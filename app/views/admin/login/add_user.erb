@@ -1,0 +1,28 @@
+<% form_for :user, @user do |f| %>
+<fieldset>
+
+  <p class="title">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.error_message_on :name %>
+  </p>
+
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+    <%= f.error_message_on :email %>
+  </p>
+  
+  <p>
+    <%= f.label :new_password, 'Password' %><% if params[:action] == 'edit' %> (Leave blank to keep existing password)<% end %><br />
+    <%= f.password_field :new_password %>
+    <%= f.error_message_on :new_password %>
+  </p>
+
+  <div class="actions">
+    <%= link_to '&larr; Back to user list', :action => 'index' %>
+    <input type="submit" value="Save changes" />
+  </div>
+  
+</fieldset>
+<% end %>

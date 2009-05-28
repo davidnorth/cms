@@ -1,0 +1,38 @@
+<% content_for :head do %>
+  <!-- Required for lightbox effect on this page -->
+  <link rel="stylesheet" href="/stylesheets/lightbox.css" type="text/css" media="screen" />
+  <script type="text/javascript" src="/javascripts/prototype.js"></script>
+  <script type="text/javascript" src="/javascripts/scriptaculous.js?load=effects,builder"></script>
+  <script type="text/javascript" src="/javascripts/lightbox.js"></script>
+<% end %>
+
+<% content_for :sidebar do %>
+<%= render :partial => 'public/page_types/shared/side_feature' %>
+<% end %>
+
+<h1><%= h @page.title %></h1>
+<% if @page.intro? %>
+<div id="intro"><p><%= h @page.intro %></p></div>
+<% end %>
+
+<% unless @page.images.empty? %>
+<a href="<%= uploaded_file_url @page.images.first, 'file', 'big' %>" rel="lightbox[group]" title="">
+  <%= uploaded_image @page.images.first, 'file', 'small' %>
+</a>
+<% end %>
+
+<%= @page.body %>
+
+<% if @page.images.length > 1 %>
+<ul id="thumbslist">
+<% for image in @page.images[1,10] -%>
+  <li>
+    <a href="<%= uploaded_file_url image, 'file', 'big' %>" rel="lightbox[group]" title="">
+  	  <%= uploaded_image image, 'file', 'small' %>
+    </a>
+  </li>
+<% end -%>
+</ul>
+<% end %>
+<%= render :partial => "public/shared/file_uploads" %>
+

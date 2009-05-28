@@ -1,0 +1,14 @@
+<fieldset>
+
+  <%= render :partial => 'admin/pages/common_fields', :locals => {:f => f} %>  
+
+  <table>
+    <%= f.field :linkname, :label => 'Link name', :helper_options => {:size => 60} %>
+    <%= f.field :linkaddress, :label => 'Link URL (inc http://)', :helper_options => {:size => 60} %>
+    <%= f.field :linkdescription, :label => 'Link description', :helper => :text_area, :helper_options => {:cols => 58, :rows => 5} %>
+  </table>
+	<%= render :partial => 'admin/shared/multiple_image_picker', :locals => {:label => 'Link image'} %>
+</fieldset>
+
+
+

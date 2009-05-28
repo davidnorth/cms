@@ -1,0 +1,21 @@
+<table><tr>
+  <td>
+      <%= f.label :parent_id, 'Parent' %><br />
+      <select name="page[parent_id]">
+        <option value="">None (top level)</option>
+        <optgroup label="Select a parent navigation item">
+          <%= page_options @page.parent_id %>
+        </optgroup>
+      </select>
+  </td>
+  <td>
+      <label>
+        Published?<br />
+        <%= f.check_box :published %>
+      </label>
+  </td>
+  <td>
+    <%= label :page, :publish_date %><br />
+    <%= date_select :page, :publish_date, :order => [:day,:month,:year], :start_year => 2000 %>
+  </td>
+</tr></table>

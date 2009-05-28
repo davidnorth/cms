@@ -1,0 +1,44 @@
+<p><%= link_to '&larr; Back to list', :action => 'index', :popup => params[:popup] %></p>
+
+<%= form_remote_tag(:loading => "$('update_loading').show()", :url => {:action => "update_#{@model}"}) %>
+<fieldset>
+  <legend>Rename/Delete <%= @model.to_s.humanize.downcase.pluralize %></legend>
+
+<% if @records.empty? %>
+<p>There are no <%= @model.to_s.humanize.downcase.pluralize %></p>
+<% else %>
+  <table class="index" style="width:auto">
+<% for record in @records -%>
+  <tr>
+      <td>
+        <%= text_field_tag "records[#{record.id}][name]", record, :size => 60 %>
+      </td>
+      <td>
+        <%= link_to_remote(image_tag('/images/admin/delete.gif'), 
+            {:update => 'list', 
+            :url => {:action => "delete_#{@model}", :id => record.id}},
+            :confirm => 'Are you sure you want to delete?'
+            ) %>
+      </td>
+<% if @controller.respond_to?("reorder_#{@model}") %>
+      <td>
+        <% unless record.first? %>
+          <%= link_to_remote(image_tag('/images/admin/up.gif'), :url => {:action => "reorder_#{@model}", :direction => 'higher', :id => record.id}) %>
+        <% end %>
+      </td>
+      <td>
+        <% unless record.last? %>
+          <%= link_to_remote(image_tag('/images/admin/down.gif'), :url => {:action => "reorder_#{@model}", :direction => 'lower', :id => record.id}) %>
+        <% end %>
+      </td>
+<% end %>
+    </tr>
+<% end -%>
+  </table>
+  <div>
+    <input type="submit" value="Save changes" />
+    <img src="/images/admin/spinner.gif" id="update_loading" style="display:none" />
+  </div>
+<% end %>
+</fieldset>
+</form>

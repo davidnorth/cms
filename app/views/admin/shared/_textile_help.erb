@@ -1,0 +1,15 @@
+<% container_id ||= 'default' %>
+<% visibility_toggle '&raquo; Show formatting help', "#{container_id}_textile_help" do %>
+
+<table cellspacing="0" cellpadding="0" class="formattingHelp">
+  <tr><td>_your text_</td><td class="arrow">&rarr;</td><td><em>your text</em></td></tr>
+  <tr><td>*your text*</td><td class="arrow">&rarr;</td><td><strong>your text</strong></td></tr>
+  <tr><td>"your text":http://www.somesite.com</td><td class="arrow">&rarr;</td><td><a href="http://www.somesite.com">your text</a></td></tr>
+  <tr><td>"your text":/path/to/local-page</td><td class="arrow">&rarr;</td><td><a href="/path/to/local-page">your text</a></td></tr>
+  <tr><td>h4. Sub Heading</td><td class="arrow">&rarr;</td><td><h4>Sub Heading</h4></td></tr>
+  <tr><td>* Bulleted list</td><td class="arrow">&rarr;</td><td>&#8226; Bulleted list</td></tr>
+  <tr><td># Numbered list</td><td class="arrow">&rarr;</td><td>1. Numbered list</td></tr>
+</table>
+
+<% end %>
+
