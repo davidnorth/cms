@@ -20,7 +20,7 @@ Rails::Initializer.run do |config|
   config.gem "authlogic", :version => ">= 2.0.9"
   config.gem "giraffesoft-resource_controller", :lib => "resource_controller",  :version => ">= 0.6.1", :source => "git://github.com/giraffesoft/resource_controller.git"
   config.gem 'RedCloth', :lib => 'redcloth'
-
+  config.gem 'faker'
 
   # Only load the plugins named here, by default all plugins in vendor/plugins are loaded
   #config.plugins = %W( will_paginate acts_as_ferret acts_as_list acts_as_tree exception_notification file_column ultrasphinx)

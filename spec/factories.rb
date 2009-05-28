@@ -10,11 +10,12 @@ end
 Factory.define :top_level_folder , :class => Page do |p|
   p.title "Global Nav"
   p.published true
+  p.position 1
+  p.publish_date { 1.week.ago }
 end
 
-Factory.define :page do |p|
+Factory.define :page, :parent => :top_level_folder do |p|
   p.title "About Us"
-  p.published true
-  p.parent   {|a| a.association(:top_level_folder) }
+  p.association :parent, :factory => :top_level_folder
 end
 
