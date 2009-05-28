@@ -7,15 +7,17 @@ end
 
 
 
-Factory.define :top_level_folder , :class => Page do |p|
+Factory.define :top_level_folder , :class => Folder do |p|
   p.title "Global Nav"
   p.published true
   p.position 1
   p.publish_date { 1.week.ago }
 end
 
-Factory.define :page, :parent => :top_level_folder do |p|
+Factory.define :page do |p|
   p.title "About Us"
+  p.position 1
+  p.publish_date { 1.week.ago }
   p.association :parent, :factory => :top_level_folder
 end
 

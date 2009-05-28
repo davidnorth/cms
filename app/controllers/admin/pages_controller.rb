@@ -37,19 +37,34 @@ class Admin::PagesController < Admin::BaseController
 
   def build_object
     return @object unless @object.nil?
-    if params[:parent] and Page.exists?(params[:parent])
-      @parent = Page.find(params[:parent])
-      if params[:type] and !params[:type].blank? and Page::TYPE_CLASSES.include?(params[:type].to_sym) and @parent.allowed_child_types.include?(params[:type].to_sym)
+
+    if params[:page]
+      # After submitting form, use parent from select field
+      parent_id = params[:page][:parent_id]
+    else
+      # Initially use parent param if it exists to pre-populate page's parent
+      parent_id = params[:parent]
+    end
+    if parent_id and Page.exists?(parent_id)
+      @parent = Page.find(parent_id)
+    end    
+
+    if !params[:type].blank? and Page::TYPE_CLASSES.include?(params[:type].to_sym)
+      if @parent && @parent.allowed_child_types.include?(params[:type].to_sym)
         class_name = params[:type].camelize
       else
-        # Set the type based on the parent's type
-        class_name = @parent.allowed_child_types.first.to_s.camelize
+        class_name = 'Folder'
       end
+    elsif @parent
+      # Set the type based on the parent's type
+      class_name = @parent.allowed_child_types.first.to_s.camelize
     else
       class_name = 'Folder'
     end
-    @page = eval(class_name).new(object_params)
-    @page.type_name = class_name.underscore
+
+    @page = class_name.constantize.new(object_params)
+
+    #@page.type_name = class_name.underscore
     @page.parent = @parent if @parent
     @object = @page
   end
