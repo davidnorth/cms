@@ -6,16 +6,14 @@ else
 end
  %>
 <fieldset>
-<div id="items">
+<ul id="items" class="sortable">
 <% for page in @pages %>
-  <div id="item_<%= page.id %>">
+  <li id="item_<%= page.id %>">
     <%= image_tag('/images/admin/drag.gif', :class => 'drag') %> &nbsp; 
     <%= page.title %>
-  </div>
+  </li>
 <% end %>
-</div>
-
-<%= sortable_element 'items', :tag => 'div', :handle => 'drag', :url => {:action => 'reorder'} %>
+</ul>
 
 <p><%= link_to '&larr; Finished reordering', :action => 'index' %></p>
 
