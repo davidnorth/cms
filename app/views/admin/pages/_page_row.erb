@@ -1,15 +1,34 @@
 <% has_children = (page.children.count > 0 and ! page.archive?) %>
-<tr id="page-<%= page.id %>" class="node level-<%= depth %> <%= has_children ? 'children-visible' : 'no-children' %>">
-  <td class="page" style="padding-left: <%= depth*30+(has_children ? 4 : 32) %>px">
-<% if has_children -%>
-      <img align="center" id="expander-<%= page.id %>" alt="toggle children" class="expander" src="/images/admin/collapse.png" title="" />
-<% end -%>
-        <img align="center" alt="page-icon" class="icon" src="/images/admin/page.png" /> 
-        <% if page.locked? %>
-          <span class="title disabled"><%= page.title %></span>
-        <% else %>
-          <%= link_to "<span class=\"title\">#{truncate(page.nav_title,25)}</span>", {:action => 'edit', :id => page.id}, :class => 'title' %>
-        <% end %>
+
+<% 
+
+row_classes = []
+if page.parent_id
+  row_classes << "child-of-node-#{page.parent_id}"
+end
+
+if @expand_ids.include?(page.id)
+row_classes << "expanded"
+end
+
+ %>
+
+<tr id="node-<%= page.id %>" class="<%= row_classes.join(' ') %>">
+  <td>
+
+    <% if has_children -%>
+      <span class="folder">doc</span>
+
+    <% else %>
+
+    <% end -%>
+
+    <% if page.locked? %>
+      <span class="title disabled"><%= page.title %></span>
+    <% else %>
+      <%= link_to "<span class=\"title\">#{truncate(page.nav_title,25)}</span>", {:action => 'edit', :id => page.id}, :class => 'title' %>
+    <% end %>
+
   </td>
   <td>
     <% if page.children_count > 0 %>

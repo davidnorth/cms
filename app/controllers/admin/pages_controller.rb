@@ -3,10 +3,11 @@ class Admin::PagesController < Admin::BaseController
 
   def index
     @pages = Page.top_level
-    @expand_ids = @pages.map(&:id).join(',')
+    @expand_ids = @pages.map(&:id)
     if params[:reveal] and Page.exists?(params[:reveal])
-      @expand_ids += ','+Page.find(params[:reveal]).ancestors.map(&:id).join(',')
+      @expand_ids += Page.find(params[:reveal]).ancestors.map(&:id)
     end
+    @expand_ids = @expand_ids.uniq.sort
   end
   
   def children

@@ -2,8 +2,7 @@
 
 <p>Here you can manage the site&#8217;s navigation and content.</p>
 
-
-<table id="site-map" class="index">
+<table id="site-map" class="tree_table index">
 <thead>
   <tr>
     <th>Title</th>
@@ -38,20 +37,20 @@
 <script type="text/javascript">
 // <![CDATA[
   
-sitemap = new SiteMap('site-map');
-
-expand = [<%= @expand_ids %>];
-
-// Hide all branches
-expanders = document.getElementsByClassName('expander');
-expanders.each(function(expander){
-  /expander-(\d+)/i.test(expander.id)
-  number  = RegExp.$1.toInteger()
-  // test number against list of what should be expanded by default here
-  if(!expand.include(number)){
-    sitemap.hideBranchByNumber(number);
-  }
-});
+//sitemap = new SiteMap('site-map');
+//
+//expand = [<%= @expand_ids %>];
+//
+//// Hide all branches
+//expanders = document.getElementsByClassName('expander');
+//expanders.each(function(expander){
+//  /expander-(\d+)/i.test(expander.id)
+//  number  = RegExp.$1.toInteger()
+//  // test number against list of what should be expanded by default here
+//  if(!expand.include(number)){
+//    sitemap.hideBranchByNumber(number);
+//  }
+//});
 
 // ]]>
 </script>
