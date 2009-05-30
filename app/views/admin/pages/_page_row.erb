@@ -7,8 +7,10 @@ if page.parent_id
   row_classes << "child-of-node-#{page.parent_id}"
 end
 
-if @expand_ids.include?(page.id)
-row_classes << "expanded"
+if @expand_ids.include?(page.id) and has_children
+  row_classes << "expanded"
+else
+  row_classes << "collapsed"
 end
 
 %>
