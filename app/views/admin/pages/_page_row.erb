@@ -1,5 +1,5 @@
 <% has_children = (page.children.count > 0 and ! page.archive?) %>
-
+<% node_type = has_children ? 'folder' : 'file' %>
 <% 
 
 row_classes = []
@@ -11,24 +11,14 @@ if @expand_ids.include?(page.id)
 row_classes << "expanded"
 end
 
- %>
-
+%>
 <tr id="node-<%= page.id %>" class="<%= row_classes.join(' ') %>">
-  <td>
-
-    <% if has_children -%>
-      <span class="folder">doc</span>
-
-    <% else %>
-
-    <% end -%>
-
+  <td class="title">
     <% if page.locked? %>
-      <span class="title disabled"><%= page.title %></span>
+      <span class="disabled <%= node_type %>"><%= page.title %></span>
     <% else %>
-      <%= link_to "<span class=\"title\">#{truncate(page.nav_title,25)}</span>", {:action => 'edit', :id => page.id}, :class => 'title' %>
+      <%= link_to "<span class=\"#{node_type}\">#{truncate(page.nav_title,25)}</span>", {:action => 'edit', :id => page.id}, :class => 'title' %>
     <% end %>
-
   </td>
   <td>
     <% if page.children_count > 0 %>
