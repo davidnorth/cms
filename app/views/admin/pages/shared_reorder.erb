@@ -6,7 +6,7 @@ else
 end
  %>
 <fieldset>
-<ul id="items" class="sortable">
+<ul id="items" class="sortable" data-remote="<%= reorder_admin_pages_path %>">
 <% for page in @pages %>
   <li id="item_<%= page.id %>">
     <%= image_tag('/images/admin/drag.gif', :class => 'drag') %> &nbsp; 
