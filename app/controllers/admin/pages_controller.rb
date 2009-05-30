@@ -23,12 +23,13 @@ class Admin::PagesController < Admin::BaseController
   end
 
   def reorder
-    params[:items].each_with_index do |item_id,index|
+    puts params.inspect
+    params[:item].each_with_index do |item_id,index|
       if(Page.exists?(item_id))
         Page.find(item_id).update_attribute(:position, index+1)
       end
     end
-    render_nothing
+    render :nothing => true
   end
   
   
