@@ -200,7 +200,7 @@ table.index th, table.index td {
 
 /* tree tables */
 table.tree_table td {
-  padding:5px 10px;
+  padding:8px 10px 5px 10px;
 }
 table.tree_table td.title span {
   font-size: 100%;
@@ -212,8 +212,11 @@ table.tree_table span.folder, table.tree_table span.file {
   background-position: left center;
   padding:10px 5px 10px 29px;
 }
-table.tree_table span.folder {
+table.tree_table tr.collapsed span.folder {
   background-image: url(../images/admin/folder.png);
+}
+table.tree_table tr.expanded span.folder {
+  background-image: url(../images/admin/folder-open.png);
 }
 table.tree_table span.file {
   background-image: url(../images/admin/document.png);
@@ -352,9 +355,9 @@ ul.sortable li {
 /* Misc useful classes */
 
 .disabled {
-  filter: alpha(opacity=30);
-  -moz-opacity: 0.3;
-  opacity: 0.3;
+  filter: alpha(opacity=50);
+  -moz-opacity: 0.5;
+  opacity: 0.5;
 }
 * html .disabled {
   color: #ccc!important

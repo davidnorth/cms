@@ -1,5 +1,5 @@
 <% has_children = (page.children.count > 0 and ! page.archive?) %>
-<% node_type = has_children ? 'folder' : 'file' %>
+<% node_type = page.is_a?(Folder) ? 'folder' : 'file' %>
 <% 
 
 row_classes = []
