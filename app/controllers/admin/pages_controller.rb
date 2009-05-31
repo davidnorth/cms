@@ -1,6 +1,10 @@
 class Admin::PagesController < Admin::BaseController
   setup_resource_controller
 
+  create.response do |wants|
+    wants.html { redirect_to edit_object_url }
+  end
+
   def index
     @pages = Page.top_level
     @expand_ids = @pages.map(&:id)

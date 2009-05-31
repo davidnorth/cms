@@ -19,7 +19,7 @@ $(document).ready(function(){
       buttons[this.innerHTML] = function(){ form.submit() };
       $(this).remove();
     })
-    $(this).dialog({ autoOpen: false, buttons: buttons })
+    $(this).dialog({ autoOpen: false, buttons: buttons, resizeable: true })
   });
 
 })
@@ -27,21 +27,27 @@ $(document).ready(function(){
 
 
 
-function showNewPageDialog()
+function showNewPageDialog(parent_id, page_types)
 {
-  args = $.makeArray(arguments);
-  parent_id = args.shift();
-
   $('#page_title').get(0).value = '';
-  $('#new_page_dialog').dialog('open');
 
+  // Set parent
+  $.each($('#page_parent_id').get(0).options, function(index){
+    if(this.value == parent_id){
+      $('#page_parent_id').get(0).selectedIndex = index;
+    }
+  })
+
+  // Populate type select
   ts = $('#type_select').get(0);
   ts.innerHTML = '';
-
-  $.each(args, function(){
+  $.each(page_types, function(){
     option = new Option();
     option.value = this;
     option.text = this.replace('_',' ');
     ts.options[ts.options.length] = option;    
   });
+
+  $('#new_page_dialog').dialog('open');
+
 }
