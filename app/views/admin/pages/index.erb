@@ -19,38 +19,14 @@
 </table>
 
 
-
-<fieldset class="modal" id="type_chooser" style="display:none">
-  <p>
+<div class="dialog" id="new_page_dialog" title="Create a new page">
+<% create_form do |f| %>
+  <%= render 'new_form', :f => f %>
+  <div>
     <label>Choose page type:</label><br />
     <select name="type" id="type_select">
     </select>
-  </p>
-  <p>
-    <input type="button" value="Add page" id="type_chooser_button" /> 
-    <%= link_to_function 'Cancel', "$('type_chooser').hide()" %>
-  </p>
-</fieldset>
-
-<p>
-
-<script type="text/javascript">
-// <![CDATA[
-  
-//sitemap = new SiteMap('site-map');
-//
-//expand = [<%= @expand_ids %>];
-//
-//// Hide all branches
-//expanders = document.getElementsByClassName('expander');
-//expanders.each(function(expander){
-//  /expander-(\d+)/i.test(expander.id)
-//  number  = RegExp.$1.toInteger()
-//  // test number against list of what should be expanded by default here
-//  if(!expand.include(number)){
-//    sitemap.hideBranchByNumber(number);
-//  }
-//});
-
-// ]]>
-</script>
+  </div>  
+  <button>Create Page</button>
+<% end %>
+</div>
