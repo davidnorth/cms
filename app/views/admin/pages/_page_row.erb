@@ -45,7 +45,7 @@ end
 
       <% type_args_string = page.allowed_child_types.map{|t| "'#{t}'"}.join(',') %>
       <%= link_to_function("#{image_tag('/images/admin/add.gif')} Add child", 
-        "showNewPageDialog(#{page.id},#{type_args_string})"
+        "showNewPageDialog(#{page.id},[#{type_args_string}])"
       ) %>
 
     <% else %>
