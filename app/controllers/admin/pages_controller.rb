@@ -8,6 +8,7 @@ class Admin::PagesController < Admin::BaseController
       @expand_ids += Page.find(params[:reveal]).ancestors.map(&:id)
     end
     @expand_ids = @expand_ids.uniq.sort
+    @page = Page.new
   end
   
   def children

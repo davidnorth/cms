@@ -1,5 +1,10 @@
 <% @page_title = "Creating new #{@page.class.to_s.underscore.humanize.downcase}" %>
 
 <% create_form do |f| %>
-  <%= partial 'form', :f => f %>
+<fieldset>
+
+  <%= render 'new_form', :f => f %>
+
+</fieldset>
+<%= render 'admin/generic/create_resource_actions' %>
 <% end %>

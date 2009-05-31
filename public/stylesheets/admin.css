@@ -1,11 +1,13 @@
 body {
-  font-size: 95%;
-  font-family: "Lucida Grande", "Bitstream Vera Sans", Helvetica, Verdana, Arial, sans-serif;
+	font-size: 0.9em;
+	font-family: "Arial", "Helvetica", "Verdana", "sans-serif";
   margin: 0;
   padding: 0;
   background-color: #ffffff;
 }
-
+.ui-widget {
+  font-size:12px;
+}
 * {
   margin: 0
 }

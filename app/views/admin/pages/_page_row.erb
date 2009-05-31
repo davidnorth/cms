@@ -43,14 +43,10 @@ end
   <td>
     <% if page.can_have_children? %>
 
-      <% if page.allowed_child_types.length  == 1 %>
-        <%= link_to_with_icon 'add', 'Add child', new_admin_page_path(:parent => page.id) %>
-      <% else %>
-        <% type_args_string = page.allowed_child_types.map{|t| "'#{t}'"}.join(',') %>
-        <%= link_to_function("#{image_tag('/images/admin/add.gif')} Add child", 
-          "showTypeChooser(#{page.id},#{type_args_string})"
-        ) %>
-      <% end %>
+      <% type_args_string = page.allowed_child_types.map{|t| "'#{t}'"}.join(',') %>
+      <%= link_to_function("#{image_tag('/images/admin/add.gif')} Add child", 
+        "showNewPageDialog(#{page.id},#{type_args_string})"
+      ) %>
 
     <% else %>
       <%= link_to_with_icon 'add', 'Add child' %>
