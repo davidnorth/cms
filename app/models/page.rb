@@ -7,7 +7,7 @@ class Page < ActiveRecord::Base
   named_scope :published, :conditions => 'published = 1 AND publish_date <= NOW() '
   named_scope :top_level, :conditions => 'parent_id IS NULL'
   named_scope :with_type, lambda { |q| { :conditions => {'type' => q.to_s.camelize} } }
-
+  named_scope_with_exact_match :with_parent, :parent_id
   
   validates_presence_of :title
 

@@ -26,7 +26,7 @@ end
     <% if page.children_count > 0 %>
       <%= pluralize(page.children_count,'child') %> 
       <% if page.archive? %>
-        <%= link_to '(view)', :action => 'children', :id => page.id %>
+        <%= link_to '(view)', admin_pages_path(:view => 'list', :parent => page.id) %>
       <% elsif page.children_count > 1 %>
         <%= link_to '(reorder)', :action => 'reorder_children', :id => page.id %>
       <% end %>

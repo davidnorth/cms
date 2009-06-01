@@ -89,12 +89,9 @@ class ApplicationController < ActionController::Base
         end
       end
 
-      puts "in paginate_collection_with_filters"
       if respond_to?(:collection_filters)
-        puts 'adding collection_filters'
         collection_filters.each do |field|
           if params[field] and !params[field].strip.blank?
-            puts "adding filter #{field}"
             find_in = find_in.send("with_#{field}", params[field])
           end
         end
