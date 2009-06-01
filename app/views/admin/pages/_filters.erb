@@ -1,0 +1,5 @@
+<% filter_form do %>
+  <%= hidden_field_tag :view, 'list' %>
+  <%= array_filter_tag :type, Page::TYPE_CLASSES.map{|t| [t.to_s.humanize, t.to_s]}%>
+
+<% end %>

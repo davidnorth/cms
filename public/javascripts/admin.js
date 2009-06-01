@@ -9,7 +9,7 @@ $(document).ready(function(){
       }
   });
 
-  $(".tree_table").treeTable();
+  $("#site-map").treeTable();
 
   $.ui.dialog.defaults.bgiframe = true;
   $(".dialog").each(function(dialog){

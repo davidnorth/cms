@@ -1,8 +1,4 @@
-<% content_for :sidebar do %>
-<%= render :partial => 'public/page_types/shared/side_feature' %>
-<% end %>
-
-<%= render :partial => 'public/page_types/shared/page_body' %>
+<%= render 'public/shared/page_body' %>
 
 <% for news_item in @news %>
 <div class="divider">
