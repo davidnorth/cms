@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(:version => 20090126212539) do
     t.string   "slug_path"
     t.string   "title_path"
     t.boolean  "locked",           :default => false, :null => false
-    t.boolean  "published",          :default => true, :null => false
+    t.boolean  "published",          :default => false, :null => false
     t.datetime "publish_date"
     t.string   "url"
     t.text     "intro"

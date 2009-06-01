@@ -10,7 +10,7 @@ end
 <% for page in @pages %>
   <li id="item_<%= page.id %>">
     <%= image_tag('/images/admin/drag.gif', :class => 'drag') %> &nbsp; 
-    <%= page.title %>
+    <%= page.nav_title %>
   </li>
 <% end %>
 </ul>
