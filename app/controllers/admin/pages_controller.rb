@@ -42,7 +42,7 @@ class Admin::PagesController < Admin::BaseController
   protected
 
   def collection_filters
-    %w(type title)
+    %w(type parent)
   end
 
   def collection
