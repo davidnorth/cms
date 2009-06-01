@@ -8,10 +8,13 @@ class Admin::BaseController < ApplicationController
   helper :easy_forms
   # Overide field HTML for admin forms
   helper "admin/easy_forms"
+  helper "admin/filters"
+  
 
   # For all controllers using ResourceController
-  # Call this instead of resource_controller to after resource_controller
+  # Call this instead of resource_controller
   # to override various default behaviour
+  # Set up pagination when finding collection including automatic filtering of records using named scopes
   def self.setup_resource_controller
     resource_controller
     # Go back to index rather than 'show' after creating or updating
@@ -23,7 +26,7 @@ class Admin::BaseController < ApplicationController
     end
     # Use will_paginate rather than regular find for lists
     define_method :collection do
-      end_of_association_chain.paginate(:page => params[:page], :per_page => 10)
+      paginate_collection_with_filters
     end
   end
   

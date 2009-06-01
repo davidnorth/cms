@@ -1,6 +1,7 @@
 # Filters added to this controller will be run for all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
 class ApplicationController < ActionController::Base
+  extend ActiveSupport::Memoizable
   #include ExceptionNotifiable
 
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
@@ -63,6 +64,51 @@ class ApplicationController < ActionController::Base
       return false
     end
 
+
+
+    # Fetch a paginated collection from the current controllers resource class or parent association
+    #
+    # If controller implements collection_filters which returns an array of filter names
+    # corresponding to named scopes on the model, these scopes will be chained together before
+    # paginating to filter the collection
+    #
+    # If controller implments collection_orderings, these will apply corresponding named scopes for ordering
+    # The named scope allows a complicated ordering such as by a joined table column to be encapsulated in a simple name
+    # that's suitable for use in a query string paramter
+    def paginate_collection_with_filters
+      find_in = end_of_association_chain
+
+      if respond_to?(:collection_orderings) and params[:sort_by] and collection_orderings.include?(params[:sort_by])
+        @sort_by = params[:sort_by]
+        @sort_dir = params[:sort_dir] || 'asc'
+        find_in = find_in.send("ordered_by_#{@sort_by}", @sort_dir)
+      else
+        # Won't need this after Rails 2.3 - has default ordering option
+        if find_in.respond_to?(:ordered_by_default)
+          find_in = find_in.ordered_by_default
+        end
+      end
+
+      puts "in paginate_collection_with_filters"
+      if respond_to?(:collection_filters)
+        puts 'adding collection_filters'
+        collection_filters.each do |field|
+          if params[field] and !params[field].strip.blank?
+            puts "adding filter #{field}"
+            find_in = find_in.send("with_#{field}", params[field])
+          end
+        end
+      end
+
+      if respond_to?(:paginate?) and !paginate?
+        find_in.find(:all)
+      else
+        find_in.paginate(:page => params[:page], :per_page => respond_to?(:per_page) ? per_page : 10)
+      end
+    end
+    memoize :paginate_collection_with_filters
+
+    helper_method :collection_filters
 
 
 end

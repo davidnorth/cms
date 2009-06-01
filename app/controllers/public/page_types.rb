@@ -10,7 +10,7 @@ module Public::PageTypes
   
   
   def news_index
-    @news = @page.visible_children(:page => params[:page], :order => 'publish_date DESC')
+    @news = @page.children.published.paginate(:page => params[:page], :order => 'publish_date DESC')
     respond_to do |format|
       format.html { render_page_type }
       format.rss { render(:template => 'public/page_types/news_index.rss.builder', :layout => false) } and @rendered = true
@@ -61,57 +61,14 @@ module Public::PageTypes
   end
   
   def paginated_index
-    @pager = make_pager(@page.visible_children_count,10)
-    @sub_pages = @page.visible_children(:pager => @pager)
-  end
-  
-  def buy_page
-    @retailers = Retailer.all
-  end
-  
-  def case_study_list
-    @case_studies = @page.visible_children(:page => params[:page])
-  end
-
-  def case_study
-    @case_study = @page
-  end
-
-  def profile_list
-    @profiles = @page.visible_children(:page => params[:page])
-  end  
-
-  def profile
-    @profile = @page
+    @pager = make_pager(@page.children.published_count,10)
+    @sub_pages = @page.children.published(:pager => @pager)
   end
 
   def download_list
-    @downloads = @page.visible_children(:page => params[:page])
+    @downloads = @page.children.published(:page => params[:page])
   end  
   
-  def products_page
-    @ranges = @page.visible_children(:page => params[:page], :order => "publish_date DESC")
-  end
-  
-  def product_range
-      @categories = @page.visible_children(:page => params[:page], :order => "publish_date DESC")
-  end
-
-  def products_category
-    @page_body = "products"
-    unless params[:filter].blank?
-      @filterparams = ProductCategory.find(params[:filter].to_i)
-    end
-  end
-
-  def product_list
-    @products = @page.visible_children(:page => params[:page])
-  end  
-
-  def testimonial_list
-    @page_body = "testimonials"
-  end  
-
   def gallery_list
     @galleries = @page.visible_children(:page => params[:page], :order => "publish_date DESC")
   end
@@ -124,12 +81,4 @@ module Public::PageTypes
     @gallery = @page
   end
   
-  def feature
-    @feature = @page
-  end
-
-  def location_page
-    @location_page = @page
-  end 
-
 end

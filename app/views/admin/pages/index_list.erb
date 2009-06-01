@@ -1,0 +1,23 @@
+<% @page_title = "Pages" %>
+
+<p><%= link_to 'Switch to tree view', url_for(:overwrite_params => {:view => nil})  %></p>
+
+<%= render 'filters' %>
+
+<table class="tree_table index">
+<thead>
+  <tr>
+    <th>Title</th>
+    <th>Children</th>
+    <th width="100">Type</th>
+    <th width="120">&nbsp;</th>
+    <th width="100">&nbsp;</th>
+    <th width="70">&nbsp;</th>
+  </tr>
+</thead>
+<tbody>
+<%= render :collection => @pages, :partial => 'page_row', :as => :page %>
+</tbody>
+</table>
+
+<%= will_paginate @pages %>

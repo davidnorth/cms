@@ -1,25 +1,27 @@
 class Admin::PagesController < Admin::BaseController
   setup_resource_controller
 
+  index.before do
+    if params[:view] == 'list'
+      @expand_ids = []
+    else
+      @expand_ids = @pages.map(&:id)
+      if params[:reveal] and Page.exists?(params[:reveal])
+        @expand_ids += Page.find(params[:reveal]).ancestors.map(&:id)
+      end
+      @expand_ids = @expand_ids.uniq.sort
+      @page = Page.new
+    end
+  end
+  
+  index.response do |wants|
+    wants.html { render :action => (params[:view] == 'list' ? 'index_list' : 'index') }
+  end
+
   create.response do |wants|
     wants.html { redirect_to edit_object_url }
   end
 
-  def index
-    @pages = Page.top_level
-    @expand_ids = @pages.map(&:id)
-    if params[:reveal] and Page.exists?(params[:reveal])
-      @expand_ids += Page.find(params[:reveal]).ancestors.map(&:id)
-    end
-    @expand_ids = @expand_ids.uniq.sort
-    @page = Page.new
-  end
-  
-  def children
-    @page = Page.find(params[:id])
-    @pages = @page.children.paginate(:page => params[:page], :order => 'publish_date DESC', :per_page => 10)
-  end
-  
   def reorder_children
     @parent = Page.find(params[:id])
     @page_title = "Reordering child items for &#8220;#{@page}&#8221; "
@@ -37,10 +39,19 @@ class Admin::PagesController < Admin::BaseController
     render :nothing => true
   end
   
-  
-  private
+  protected
 
+  def collection_filters
+    %w(type title)
+  end
 
+  def collection
+    if params[:view] == 'list'      
+      paginate_collection_with_filters
+    else
+      Page.top_level
+    end
+  end
 
   def build_object
     return @object unless @object.nil?
@@ -71,10 +82,8 @@ class Admin::PagesController < Admin::BaseController
 
     @page = class_name.constantize.new(object_params)
 
-    #@page.type_name = class_name.underscore
     @page.parent = @parent if @parent
     @object = @page
   end
 
-  
 end
