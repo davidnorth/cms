@@ -4,7 +4,7 @@ class Page < ActiveRecord::Base
   # Get a list of valid type class names from the contents of the page_types directory
   TYPE_CLASSES = [:page] + Dir[RAILS_ROOT + '/app/models/page_types/*.rb'].map{|f| f.split('/').last.gsub(/\.rb$/,'').to_sym  }
 
-  named_scope :published, :conditions => 'published = 1 AND publish_date <= NOW() '
+  named_scope :published, :conditions => 'published = 1 AND publish_date <= CURDATE() '
   named_scope :top_level, :conditions => 'parent_id IS NULL'
   named_scope :with_type, lambda { |q| { :conditions => {'type' => q.to_s.camelize} } }
   named_scope_with_exact_match :with_parent, :parent_id
