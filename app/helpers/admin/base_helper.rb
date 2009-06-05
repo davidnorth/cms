@@ -8,6 +8,31 @@ module Admin::BaseHelper
       content_tag('span', "#{icon} #{text}", :class => 'disabled')
     end
   end
+  
+  def icon(name)
+    image_tag("/images/admin/icons/#{name}.png")
+  end
+  
+  def button(text, options = {})
+    options = {
+      :class => 'positive'
+    }.update(options)
+    if icon_name = options.delete(:icon)
+      text = icon(icon_name) + ' ' + text
+    end
+    content_tag('button', text, options)
+  end
+  
+  def link_button(text, url, options = {})
+    options = {
+      :class => 'positive'
+    }.update(options)
+    options[:class] += ' button'
+    if icon_name = options.delete(:icon)
+      text = icon(icon_name) + ' ' + text
+    end
+    link_to(text, url, options)
+  end
 
   # Make an admin tab that coveres one or more resources supplied by symbols
   # Option hash may follow. Only option currently is :label to ovveride link text
