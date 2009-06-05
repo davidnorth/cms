@@ -6,8 +6,6 @@
     <%= f.error_message_on :alt %>    
   </p>
 
-  <div class="actions">
-    <%= link_to '&larr; Cancel and go back', :action => 'index', :popup => params[:popup] %> &nbsp;
-    <input type="submit" value="Save changes" />
-  </div>
+  <%= render 'admin/generic/resource_buttons' %>
+
 </fieldset>
