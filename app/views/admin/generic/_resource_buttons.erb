@@ -1,0 +1,9 @@
+<% object = self.send(:object) %>
+<p class="buttons">
+  <%= link_button 'Cancel and go back', collection_path, :icon => 'cross', :class => 'negative' %>
+  <% if object.new_record? %>
+  <%= button "Create #{human_model_name}", :icon => 'tick' %>
+  <% else %>
+  <%= button 'Save changes', :icon => 'tick' %>
+  <% end %>
+</p>

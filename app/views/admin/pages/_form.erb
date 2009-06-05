@@ -7,11 +7,4 @@
 
 <%= render :partial => "admin/page_types/#{@page.admin_template}", :locals => {:f => f} %>
 
-<div class="actions">
-  <%= link_to '&larr; Cancel and go back', :action => 'index' %>
-  <% if @page.new_record? %>
-    <input type="submit" value="Create page" />
-  <% else %>
-    <input type="submit" value="Save changes" />
-  <% end %>
-</div>
+<%= render 'admin/generic/resource_buttons' %>
