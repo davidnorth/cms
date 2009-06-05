@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(:version => 20090126212539) do
   end
 
   create_table "file_uploads", :force => true do |t|
-    t.integer  "file_upload_category_id"
-    t.string   "file"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
     t.string   "title"
     t.datetime "created_at"
   end
