@@ -2,32 +2,17 @@
 
 <p>
   <%= link_to image_tag('/images/admin/plus.png')+' Upload a new file', new_admin_file_upload_path(:popup => params[:popup]) %> &nbsp; 
-  <%= link_to image_tag('/images/admin/edit.gif')+' Edit categories', admin_file_upload_categories_path(:popup => params[:popup]) %>
-</p>
-
-<p>
-  <%= form_tag({},:method => 'get') %>
-  <%= hidden_field_tag :popup, params[:popup] %>
-    Filter files by category: 
-    <select name="category">
-      <option value="">Show all</option>
-      <%= options_from_collection_for_select FileUploadCategory.all, :id, :name, params[:category].to_i %>
-    </select>
-    <input type="submit" value="Filter" />
-  </form>
 </p>
 
 <% unless @file_uploads.empty? %>
 <table class="index">
   <tr>
     <th>Title</th>
-    <th>Category</th>
     <th>&nbsp;</th>
   </tr>
 <% for file_upload in @file_uploads %>
   <tr>
     <td><%= file_upload.title %></td>
-    <td><%= file_upload.category %></td>
     <td class="actions" align="right">
       <% if params[:popup] == '1' %>
         <%= link_to_function "#{image_tag('/images/admin/view.gif')} Insert", "pickFile(#{file_upload.id}, '#{url_for_file_column('file_upload','file','',file_upload)}','#{file_upload.filename}','#{file_upload.filetype}')" %> &nbsp; 
