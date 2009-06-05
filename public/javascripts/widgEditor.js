@@ -31,7 +31,7 @@
 **    Purpose:
 **    -------------------------------------------------------------------------
 **
-**    Replaces all textareas (class="widgEditor") in a HTML document with
+**    Replaces all textareas (class="wysiwyg") in a HTML document with
 **    enhanced editing windows to allow basic HTML formatting in a WYSIWYG
 **    manner.
 **
@@ -45,19 +45,19 @@
 **
 **    widgInit()
 **
-**    widgEditor(replacedTextareaID)
+**    wysiwyg(replacedTextareaID)
 **    widtEditor.cleanPaste()
-**    widgEditor.cleanSource()
-**    widgEditor.convertSPANs(theSwitch)
-**    widgEditor.detectPaste(e)
-**    widgEditor.initEdit()
-**    widgEditor.insertNewParagraph()
-**    widgEditor.modifyFormSubmit()
-**    widgEditor.paragraphise()
-**    widgEditor.refreshDisplay()
-**    widgEditor.switchMode()
-**    widgEditor.updateWidgInput()
-**    widgEditor.writeDocument()
+**    wysiwyg.cleanSource()
+**    wysiwyg.convertSPANs(theSwitch)
+**    wysiwyg.detectPaste(e)
+**    wysiwyg.initEdit()
+**    wysiwyg.insertNewParagraph()
+**    wysiwyg.modifyFormSubmit()
+**    wysiwyg.paragraphise()
+**    wysiwyg.refreshDisplay()
+**    wysiwyg.switchMode()
+**    wysiwyg.updateWidgInput()
+**    wysiwyg.writeDocument()
 **
 **    widgToolbar()
 **    widgToolbar.addButton(theID, theClass, theLabel, theAction)
@@ -68,7 +68,7 @@
 **
 **    widgToolbarAction()
 **
-**    widgToolbarCheckState(theWidgEditor, resubmit)
+**    widgToolbarCheckState(thewysiwyg, resubmit)
 **
 **    widgToolbarMouseover()
 **
@@ -179,7 +179,7 @@ function widgInit()
 		{
 			var theTextarea = theTextareas[i];
 			
-			if (theTextarea.className.classExists("widgEditor"))
+			if (theTextarea.className.classExists("wysiwyg"))
 			{
 				// Patch by David North so it works in gecho browser if empty
 				if(theTextarea.value == ''){
@@ -191,7 +191,7 @@ function widgInit()
 				}
 				
 				
-				setTimeout("new widgEditor('" + theTextarea.id + "')", 500 * (i));
+				setTimeout("new wysiwyg('" + theTextarea.id + "')", 500 * (i));
 			}
 		}
 	}
@@ -206,7 +206,7 @@ function widgInit()
 
 
 
-function widgEditor(replacedTextareaID)
+function wysiwyg(replacedTextareaID)
 {
 	var self = this;
 	
@@ -248,10 +248,10 @@ function widgEditor(replacedTextareaID)
 
 	this.theToolbar = new widgToolbar(this);
 	
-	/* An extra input to determine if the submitted data is from the normal textarea or from the widgEditor */
+	/* An extra input to determine if the submitted data is from the normal textarea or from the wysiwyg */
 	this.theExtraInput.type = "hidden";	
-	this.theExtraInput.id = this.theTextarea.id + "WidgEditor";
-	this.theExtraInput.name = this.theTextarea.name + "WidgEditor";
+	this.theExtraInput.id = this.theTextarea.id + "wysiwyg";
+	this.theExtraInput.name = this.theTextarea.name + "wysiwyg";
 	this.theExtraInput.value = "true";
 	
 	this.theTextarea.id += "WidgTextarea";
@@ -263,7 +263,7 @@ function widgEditor(replacedTextareaID)
 	this.theContainer.appendChild(this.theExtraInput);
 	this.theContainer.style.visibility = "hidden";
 
-	this.theInput.widgEditorObject = this;
+	this.theInput.wysiwygObject = this;
 	
 	this.theTextarea.parentNode.replaceChild(this.theContainer, this.theTextarea);
 
@@ -283,7 +283,7 @@ function widgEditor(replacedTextareaID)
 
 
 /* Clean pasted content */
-widgEditor.prototype.cleanPaste = function()
+wysiwyg.prototype.cleanPaste = function()
 {
 	if (widgAutoClean || confirm("Do you wish to clean the HTML source of the content you just pasted?"))
 	{
@@ -408,7 +408,7 @@ widgEditor.prototype.cleanPaste = function()
 
 
 /* Clean the HTML code of the content area */
-widgEditor.prototype.cleanSource = function()
+wysiwyg.prototype.cleanSource = function()
 {
 	var theHTML = "";
 	
@@ -459,7 +459,7 @@ widgEditor.prototype.cleanSource = function()
 
 
 
-widgEditor.prototype.convertSPANs = function(theSwitch)
+wysiwyg.prototype.convertSPANs = function(theSwitch)
 {
 	if (theSwitch)
 	{
@@ -582,7 +582,7 @@ widgEditor.prototype.convertSPANs = function(theSwitch)
 
 
 /* Check for pasted content */
-widgEditor.prototype.detectPaste = function(e)
+wysiwyg.prototype.detectPaste = function(e)
 {
 	var keyPressed = null;
 	var theEvent = null;
@@ -613,7 +613,7 @@ widgEditor.prototype.detectPaste = function(e)
 
 
 /* Turn on document editing */
-widgEditor.prototype.initEdit = function()
+wysiwyg.prototype.initEdit = function()
 {
 	var self = this;
 	
@@ -661,7 +661,7 @@ widgEditor.prototype.initEdit = function()
 
 
 /* Add elements to a paragraph and inserts the paragraph before a given element in the body */
-widgEditor.prototype.insertNewParagraph = function(elementArray, succeedingElement)
+wysiwyg.prototype.insertNewParagraph = function(elementArray, succeedingElement)
 {
 	var theBody = this.theIframe.contentWindow.document.getElementsByTagName("body")[0];
 	var theParagraph = this.theIframe.contentWindow.document.createElement("p");
@@ -687,7 +687,7 @@ widgEditor.prototype.insertNewParagraph = function(elementArray, succeedingEleme
 
 
 /* Add submit listener to parent form */
-widgEditor.prototype.modifyFormSubmit = function()
+wysiwyg.prototype.modifyFormSubmit = function()
 {
 	var self = this;
 	var theForm = this.theContainer.parentNode;
@@ -726,7 +726,7 @@ widgEditor.prototype.modifyFormSubmit = function()
 
 
 /* Format the HTML with paragraphs. Any parentless text is enclosed in a paragraph, double breaks are paragraph markers */
-widgEditor.prototype.paragraphise = function()
+wysiwyg.prototype.paragraphise = function()
 {
 	if (widgInsertParagraphs && this.wysiwyg)
 	{
@@ -820,7 +820,7 @@ widgEditor.prototype.paragraphise = function()
 
 
 /* Update hidden input to reflect editor contents, for submission */
-widgEditor.prototype.refreshDisplay = function()
+wysiwyg.prototype.refreshDisplay = function()
 {
 	if (this.wysiwyg)
 	{
@@ -838,7 +838,7 @@ widgEditor.prototype.refreshDisplay = function()
 
 
 /* Switch between WYSIWYG and HTML source */
-widgEditor.prototype.switchMode = function()
+wysiwyg.prototype.switchMode = function()
 {
 	if (!this.locked)
 	{
@@ -873,7 +873,7 @@ widgEditor.prototype.switchMode = function()
 
 
 /* Update hidden input to reflect editor contents, for submission */
-widgEditor.prototype.updateWidgInput = function()
+wysiwyg.prototype.updateWidgInput = function()
 {
 	if (this.wysiwyg)
 	{
@@ -898,7 +898,7 @@ widgEditor.prototype.updateWidgInput = function()
 
 
 /* Write initial content to editor */
-widgEditor.prototype.writeDocument = function(documentContent)
+wysiwyg.prototype.writeDocument = function(documentContent)
 {
 	/* HTML template into which the HTML Editor content is inserted */
 	var documentTemplate = "\
@@ -931,11 +931,11 @@ function widgToolbar(theEditor)
 {
 	var self = this;
 	
-	this.widgEditorObject = theEditor;
+	this.wysiwygObject = theEditor;
 	
 	/* Create toolbar ul element */
 	this.theList = document.createElement("ul");
-	this.theList.id = this.widgEditorObject.theInput.id + "WidgToolbar";
+	this.theList.id = this.wysiwygObject.theInput.id + "WidgToolbar";
 	this.theList.className = "widgToolbar";
 	this.theList.widgToolbarObject = this;
 
@@ -1168,12 +1168,12 @@ widgToolbar.prototype.setState = function(theState, theStatus)
 function widgToolbarAction()
 {
 	var theToolbar = this.parentNode.parentNode.widgToolbarObject;
-	var theWidgEditor = theToolbar.widgEditorObject;
-	var theIframe = theWidgEditor.theIframe;
+	var thewysiwyg = theToolbar.wysiwygObject;
+	var theIframe = thewysiwyg.theIframe;
 	var theSelection = "";
 
 	/* If somehow a button other than "HTML source" is clicked while viewing HTML source, ignore click */	
-	if (!theWidgEditor.wysiwyg && this.action != "html")
+	if (!thewysiwyg.wysiwyg && this.action != "html")
 	{
 		return false;
 	}
@@ -1182,15 +1182,15 @@ function widgToolbarAction()
 	{
 		case "formatblock":
 			theIframe.contentWindow.document.execCommand(this.action, false, this.value);
-			theWidgEditor.theToolbar.setState("SelectBlock", this.value);
+			thewysiwyg.theToolbar.setState("SelectBlock", this.value);
 			break;
 		case "formatstyle":
-      theNode = widgGetParentNode(theWidgEditor);
+      theNode = widgGetParentNode(thewysiwyg);
       theNode.className = this.value;
 			break;
 			
 		case "html":
-			theWidgEditor.switchMode();
+			thewysiwyg.switchMode();
 			
 			break;
 			
@@ -1198,7 +1198,7 @@ function widgToolbarAction()
 			if (this.parentNode.className.classExists("on"))
 			{
 				theIframe.contentWindow.document.execCommand("Unlink", false, null);
-				theWidgEditor.theToolbar.setState("Link", "off");
+				thewysiwyg.theToolbar.setState("Link", "off");
 			}
 			else
 			{
@@ -1230,7 +1230,7 @@ function widgToolbarAction()
 				if (theURL != null)
 				{			
 					theIframe.contentWindow.document.execCommand("CreateLink", false, theURL);
-					theWidgEditor.theToolbar.setState("Link", "on");
+					thewysiwyg.theToolbar.setState("Link", "on");
 				}
 			}
 			
@@ -1252,46 +1252,46 @@ function widgToolbarAction()
 			if (this.action == "insertorderedlist")
 			{
 				theAction = "Ordered";
-				theWidgEditor.theToolbar.setState("Unordered", "off");
+				thewysiwyg.theToolbar.setState("Unordered", "off");
 			}
 			
 			/* Turn off ordered toolbar item if unordered toolbar item was activated */	
 			if (this.action == "insertunorderedlist")
 			{
 				theAction = "Unordered";
-				theWidgEditor.theToolbar.setState("Ordered", "off");
+				thewysiwyg.theToolbar.setState("Ordered", "off");
 			}
 			
 			/* If toolbar item was turned on */
 			if (theIframe.contentWindow.document.queryCommandState(this.action, false, null))
 			{
-				theWidgEditor.theToolbar.setState(theAction, "on");
+				thewysiwyg.theToolbar.setState(theAction, "on");
 			}
 			else
 			{
-				theWidgEditor.theToolbar.setState(theAction, "off");
+				thewysiwyg.theToolbar.setState(theAction, "off");
 			}
 	}
 	
-	if (theWidgEditor.wysiwyg == true)
+	if (thewysiwyg.wysiwyg == true)
 	{
 		theIframe.contentWindow.focus();
 	}
 	else
 	{
-		theWidgEditor.theTextarea.focus();
+		thewysiwyg.theTextarea.focus();
 	}
 	
 	return false;	
 }
 
 
-function widgGetParentNode(theWidgEditor)
+function widgGetParentNode(thewysiwyg)
 {
 	/* IE selections */
-	if (theWidgEditor.theIframe.contentWindow.document.selection)
+	if (thewysiwyg.theIframe.contentWindow.document.selection)
 	{
-		theSelection = theWidgEditor.theIframe.contentWindow.document.selection;
+		theSelection = thewysiwyg.theIframe.contentWindow.document.selection;
 		theRange = theSelection.createRange();
     if(theSelection.type == 'Control' && theRange.item(0).nodeName == 'IMG'){
       theParentNode = theRange.item(0)
@@ -1313,7 +1313,7 @@ function widgGetParentNode(theWidgEditor)
 	{
 		try
 		{
-			theSelection = theWidgEditor.theIframe.contentWindow.getSelection();
+			theSelection = thewysiwyg.theIframe.contentWindow.getSelection();
 		}
 		catch (e)
 		{
@@ -1340,12 +1340,12 @@ function widgGetParentNode(theWidgEditor)
 }
 
 /* Check the nesting of the current cursor position/selection */
-function widgToolbarCheckState(theWidgEditor, resubmit)
+function widgToolbarCheckState(thewysiwyg, resubmit)
 {
 	if (!resubmit)
 	{
 		/* Allow browser to update selection before using the selection */
-		setTimeout(function(){widgToolbarCheckState(theWidgEditor, true); return true;}, 500);
+		setTimeout(function(){widgToolbarCheckState(thewysiwyg, true); return true;}, 500);
 	}
 	
 	var theSelection = null;
@@ -1354,13 +1354,13 @@ function widgToolbarCheckState(theWidgEditor, resubmit)
 	var theLevel = 0;
 	
 	/* Turn off all the buttons */
-	var menuListItems = theWidgEditor.theToolbar.theList.childNodes;
+	var menuListItems = thewysiwyg.theToolbar.theList.childNodes;
 	for (var i = 0; i < menuListItems.length; i++)
 	{
 		menuListItems[i].className = menuListItems[i].className.removeClass("on");
 	}
 	
-  theParentNode = widgGetParentNode(theWidgEditor);
+  theParentNode = widgGetParentNode(thewysiwyg);
 
 	while (theParentNode.nodeType == 3)
 	{
@@ -1372,12 +1372,12 @@ function widgToolbarCheckState(theWidgEditor, resubmit)
 		switch (theParentNode.nodeName.toLowerCase())
 		{
 			case "a":
-				theWidgEditor.theToolbar.setState("Link", "on");
+				thewysiwyg.theToolbar.setState("Link", "on");
 				
 				break;
 				
 			case "em":
-				theWidgEditor.theToolbar.setState("Italic", "on");
+				thewysiwyg.theToolbar.setState("Italic", "on");
 				
 				break;
 				
@@ -1386,47 +1386,47 @@ function widgToolbarCheckState(theWidgEditor, resubmit)
 				break;
 				
 			case "ol":
-				theWidgEditor.theToolbar.setState("Ordered", "on");
-				theWidgEditor.theToolbar.setState("Unordered", "off");
+				thewysiwyg.theToolbar.setState("Ordered", "on");
+				thewysiwyg.theToolbar.setState("Unordered", "off");
 				
 				break;
 				
 			case "span":
 				if (theParentNode.getAttribute("style") == "font-weight: bold;")
 				{
-					theWidgEditor.theToolbar.setState("Bold", "on");
+					thewysiwyg.theToolbar.setState("Bold", "on");
 				}
 				else if (theParentNode.getAttribute("style") == "font-style: italic;")
 				{
-					theWidgEditor.theToolbar.setState("Italic", "on");
+					thewysiwyg.theToolbar.setState("Italic", "on");
 				}
 				else if (theParentNode.getAttribute("style") == "font-weight: bold; font-style: italic;")
 				{
-					theWidgEditor.theToolbar.setState("Bold", "on");
-					theWidgEditor.theToolbar.setState("Italic", "on");
+					thewysiwyg.theToolbar.setState("Bold", "on");
+					thewysiwyg.theToolbar.setState("Italic", "on");
 				}
 				else if (theParentNode.getAttribute("style") == "font-style: italic; font-weight: bold;")
 				{
-					theWidgEditor.theToolbar.setState("Bold", "on");
-					theWidgEditor.theToolbar.setState("Italic", "on");
+					thewysiwyg.theToolbar.setState("Bold", "on");
+					thewysiwyg.theToolbar.setState("Italic", "on");
 				}
 				
 				break;
 			
 			case "strong":
-				theWidgEditor.theToolbar.setState("Bold", "on");
+				thewysiwyg.theToolbar.setState("Bold", "on");
 				
 				break;
 			
 			case "ul":
-				theWidgEditor.theToolbar.setState("Unordered", "on");
-				theWidgEditor.theToolbar.setState("Ordered", "off");
+				thewysiwyg.theToolbar.setState("Unordered", "on");
+				thewysiwyg.theToolbar.setState("Ordered", "off");
 				
 				break;
 			
 			default:
-  			theWidgEditor.theToolbar.setState("SelectBlock", "<" + theParentNode.nodeName.toLowerCase() + ">");
-  			theWidgEditor.theToolbar.setState("SelectStyle", theParentNode.className);
+  			thewysiwyg.theToolbar.setState("SelectBlock", "<" + theParentNode.nodeName.toLowerCase() + ">");
+  			thewysiwyg.theToolbar.setState("SelectStyle", theParentNode.className);
 				break;
 		}
 		
