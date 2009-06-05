@@ -379,3 +379,56 @@ ul.sortable li {
 span.imagetitle {
   font-size: 10px;
 }
+
+
+
+
+
+
+
+
+a.positive:hover, button.positive:hover {
+  border:1px solid #A2C97D;
+  color:#63A142;
+}
+.buttons button:hover, .buttons a:hover, a.button:hover, button.button:hover {
+  border:1px solid #999999;
+  color:#000000;
+}
+.buttons button, button.button {
+  line-height:17px;
+  padding:5px 10px 5px 7px;
+  width:auto;
+}
+button.positive, a.positive {
+  color:#63A142;
+}
+button, button.button {
+  overflow:visible;
+  padding:4px 10px 3px 7px;
+  width:auto;
+}
+a.button, button.button {
+  display:inline-block;
+  float:none;
+}
+.buttons a, .buttons button, a.button, button.button {
+  -moz-border-radius-bottomleft:11px;
+  -moz-border-radius-bottomright:11px;
+  -moz-border-radius-topleft:11px;
+  -moz-border-radius-topright:11px;
+  background:#EAEAEA url(../images/admin/button-bg.png) repeat-x scroll left top;
+  border-color:#DEDEDE #BBBBBB #BFBFBF #DEDEDE;
+  border-style:solid;
+  border-width:1px;
+  color:#464646;
+  cursor:pointer;
+  display:block;
+  float:left;
+  font-family:"Lucida Grande",Tahoma,Arial,sans-serif;
+  font-size:100%;
+  line-height:130%;
+  margin:0 0.7em 0 0;
+  padding:5px 10px 6px;
+  text-decoration:none;
+}

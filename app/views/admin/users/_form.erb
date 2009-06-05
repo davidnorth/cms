@@ -28,10 +28,10 @@
     <%= f.password_field :password_confirmation %>
     <%= f.error_message_on :password_confirmation %>
   </p>
-
-  <div class="actions">
-    <%= link_to '&larr; Back to user list', :action => 'index' %>
-    <input type="submit" value="Save changes" />
-  </div>
   
 </fieldset>
+
+<p class="buttons">
+  <%= link_button 'Cancel and go back', collection_path, :icon => 'cancel' %>
+  <%= button 'Save changes', :icon => 'tick' %>
+</p>
