@@ -1,1 +1,12 @@
-<%= partial 'admin/generic/new', :multipart => true %>
+<% create_form :multipart => true do |f| %>
+<fieldset>
+  <p>
+    <%= f.label :file %><br />
+    <%= f.file_field :file %>
+    <%= f.error_message_on :file %>    
+  </p>    
+
+  <%= render 'admin/generic/resource_buttons' %>
+
+</fieldset>
+<% end %>
