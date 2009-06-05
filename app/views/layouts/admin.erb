@@ -9,7 +9,22 @@
 
   <%= javascript_include_tag 'jquery-1.3.2.min.js', 'jquery-ui-1.7.1.custom.min.js', 'jquery.treeTable.min.js', 'swfobject', 'admin', :cache => 'all_admin' %>
 
-  <%= render :partial => 'admin/shared/tiny_mce_script' %>
+	<%= javascript_include_tag 'fckeditor/fckeditor.js' %>
+  <script type="text/javascript">
+  window.onload = function()
+  {
+    $('.wysiwyg').each(function(){
+      alert(this);
+      editor = new FCKeditor( this.id ) ;
+      editor.BasePath = "<%= ActionController::Base.relative_url_root.to_s %>/javascripts/fckeditor/";
+      editor.Config["CustomConfigurationsPath"] = "<%= javascript_path('fckeditor/fckconfig.js') %>";
+      editor.Config["ImageBrowserURL"] = "<%= url_for(:controller => 'images', :action => 'index', :popup => 'true') %>";
+      editor.Height = '350';
+      editor.ReplaceTextarea() ;
+    })
+  }
+
+  </script>
 
   <script type="text/javascript">
   <%= request_forgery_protection_token %> =  '<%= form_authenticity_token %>';

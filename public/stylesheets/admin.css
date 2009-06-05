@@ -389,6 +389,9 @@ span.imagetitle {
 
 /* BUTTONS */
 
+.buttons {
+  padding-bottom:10px;
+}
 .buttons a, .buttons button{
     display:block;
     float:left;
