@@ -14,7 +14,6 @@
   window.onload = function()
   {
     $('.wysiwyg').each(function(){
-      alert(this);
       editor = new FCKeditor( this.id ) ;
       editor.BasePath = "<%= ActionController::Base.relative_url_root.to_s %>/javascripts/fckeditor/";
       editor.Config["CustomConfigurationsPath"] = "<%= javascript_path('fckeditor/fckconfig.js') %>";
