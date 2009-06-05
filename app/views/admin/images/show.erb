@@ -13,7 +13,6 @@
   </p>
 
 <% if params[:popup] and params[:collection].nil? %>
-<%= javascript_include_tag 'tiny_mce/tiny_mce_popup' %>
 <p><%= link_to_function "#{image_tag('/images/admin/yes.gif')} Use this image", "pickImage(#{@image.id},'#{@image.image.url('cropped')}')" %></p>
 <% end %>
 
@@ -22,9 +21,9 @@
 window.focus();
 
 function change_size() {
-  src = $('size').options[$('size').selectedIndex].value;
-  $('image_preview').src = src;
-  $('image_src').innerHTML = src;
+  src = $('#size').get(0).options[$('#size').get(0).selectedIndex].value;
+  $('#image_preview').attr('src', src);
+  $('#image_src').html(src);
 }
 
 function makeAttrib(attrib, value) {
@@ -36,7 +35,7 @@ function pickImage(id)
   // create a simple image object
   image = {
     id:       <%= @image.id %>,
-    src: $('image_preview').src.replace(/\?.*$/,''),
+    src: $('#image_preview').get(0).src.replace(/\?.*$/,''),
     thumb_src:        '<%= @image.image.url('thumb') %>',
     alt:       '<%= @image.to_s %>'
     }
@@ -44,6 +43,9 @@ function pickImage(id)
   try {
     window.opener.imageLibraryCallback(image,window);
   } catch (e) {
+  	window.top.opener.SetUrl( encodeURI( image.src ).replace( '#', '%23' ), null, null, image.alt ) ;
+  	window.top.close() ;
+  	window.top.opener.focus();
   }
   //window.close();
 }
