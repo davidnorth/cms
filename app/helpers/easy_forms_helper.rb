@@ -16,7 +16,7 @@ module EasyFormsHelper
     else
       html = "#{label_html}<br />#{field_html} #{error_html}"
     end
-    content_tag('br',html, :class => (field_has_error?(model,method) ? 'withError' : nil))
+    content_tag('p', html, :class => (field_has_error?(model,method) ? 'withError' : nil))
   end
 
   # Render a collection of radio buttons with labels using the radio_button helper to build the input tag
