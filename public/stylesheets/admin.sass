@@ -1,0 +1,498 @@
+body
+  :font-size 0.9em
+  :font-family "Arial", "Helvetica", "Verdana", "sans-serif"
+  :margin 0
+  :padding 0
+  :background-color #ffffff
+
+
+.ui-widget
+  :font-size 12px
+
+
+*
+  :margin 0
+
+
+  html
+    #header
+      :background-image none
+      :filter progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/admin/header-bg.png', sizingMethod='scale')
+
+    #tabs
+      :bottom -1px
+
+    .disabled
+      :color #ccc!important
+
+
+      img
+        :filter alpha(opacity=30)
+
+
+  &:first-child+html button[type]
+    :padding 4px 10px 3px 7px
+
+
+h1
+  :margin-bottom 10px
+  :font-size 160%
+
+
+h2
+  :margin-bottom 10px
+
+
+h3
+  :margin-bottom 10px
+  :font-size 130%
+  :margin-top 1.25em
+  :margin-bottom .5em
+
+
+p
+  :margin-bottom 10px
+
+
+form
+  :margin-bottom 10px
+
+  .title input
+    :font-size 175%
+    :width 95%
+
+
+img
+  :border 0
+
+
+.hidden
+  :display none
+
+
+.clear
+  :font-size 1px
+  :clear both
+
+
+a
+  :color #33f
+  :text-decoration none
+
+  &.button
+    :-moz-border-radius-bottomleft 11px
+    :-moz-border-radius-bottomright 11px
+    :-moz-border-radius-topleft 11px
+    :-moz-border-radius-topright 11px
+
+
+#header
+  :background #0269AB url(../images/admin/header-bg.png) bottom left repeat-x
+  :color white
+  :height 70px
+  :padding-top 1px
+  :position relative
+
+  a
+    :color white
+    :text-decoration none
+
+
+#site-title
+  :font-size 150%
+  :font-weight bold
+  :margin-top 10px
+  :margin-left 20px
+
+  span a
+    :color #009BDE!important
+    :font-weight normal
+    :font-size 80%
+
+
+#site-subtitle
+  :color #54A0DB
+  :font-size 80%
+  :font-weight normal
+  :font-style italic
+
+
+#login_info
+  :position absolute
+  :top 10px
+  :right 20px
+  :font-size 80%
+
+  a
+    :text-decoration underline
+    :color #4DA0DB
+
+
+#login
+  :width 300px
+
+
+#content
+  :padding 20px
+
+
+fieldset
+  :background-color #E5F0F6
+  :border 0
+  :margin-bottom 20px
+  :padding 20px
+
+  table
+    :margin-bottom 10px
+
+    td
+      :padding 4px
+      :vertical-align top
+
+
+label
+  :color #444
+
+
+textarea
+  :width 100%
+
+
+.actions
+  :margin-bottom 10px
+
+
+#notice
+  :color white
+  :padding 10px 15px
+  :margin-bottom 10px
+  :background-color #0c3
+  :border 3px solid #7FE699
+
+
+#error
+  :color white
+  :padding 10px 15px
+  :margin-bottom 10px
+  :background-color #c00
+  :border 3px solid #e67f00
+
+
+.formError
+  :color #fff
+  :background-color #c00
+
+
+ul
+  &.errors li
+    :color #c00
+
+  &.sortable
+    :list-style none
+    :margin 0
+    :padding 0
+    :margin-bottom 10px
+
+    li
+      :padding 4px
+      :width 400px
+      :background-color #fff
+      :margin-bottom 3px
+      :border-top 1px solid #000
+      :border-bottom 1px solid #000
+
+
+table
+  &.index
+    :border-collapse collapse
+    :border-spacing 0
+    :font-size 90%
+    :width 100%
+    :margin-bottom 20px
+    :border-bottom 1px solid #eaeaea
+
+    tr:hover td
+      :background-color #ffd
+
+    th
+      :text-align left
+      :background-color #f5f5f5
+      :font-size 90%
+      :font-weight normal
+      :padding 4px
+      :border-bottom 1px solid #eaeaea
+
+    td
+      :padding 4px
+      :border-bottom 1px solid #eaeaea
+
+  &.tree_table
+    td
+      :padding 8px 10px 5px 10px
+
+      &.title span
+        :font-size 100%
+        :font-weight bold
+        :color #333
+
+    span
+      &.folder
+        :background-repeat no-repeat
+        :background-position left center
+        :padding 10px 5px 10px 29px
+
+      &.file
+        :background-repeat no-repeat
+        :background-position left center
+        :padding 10px 5px 10px 29px
+        :background-image url(../images/admin/document.png)
+
+    tr
+      &.collapsed span.folder
+        :background-image url(../images/admin/folder.png)
+
+      &.expanded span.folder
+        :background-image url(../images/admin/folder-open.png)
+
+    a:hover
+      :text-decoration none
+
+  &.thumb
+    :border 1px solid #ccc
+    :border-collapse collapse
+    :border-spacing 0
+    :width 86px
+    :height 86px
+    :position relative
+
+    td
+      :background-color #fff
+      :padding 3px
+      :text-align center
+      :vertical-align middle
+
+    span.actions
+      :display block
+      :position absolute
+      :bottom 2px
+      :right 2px
+      :margin 0
+      :padding 0
+
+  &.images
+    :border-collapse collapse
+    :border-spacing 0
+
+    td
+      :width 92px
+      :padding 3px
+
+  &.formattingHelp
+    :background-color #fff
+    :border 1px solid #999
+
+    td
+      :padding 4px
+
+
+#image_preview
+  :border 1px solid #ccc
+  :margin auto
+  :padding 5px
+  :margin-bottom 10px
+
+
+.item img
+  :margin-right 5px
+
+
+#available_banners
+  :border 1px solid #000
+  :height 60px
+  :background-color #fff
+
+
+#assigned_banners
+  :border 1px solid #000
+  :height 60px
+  :background-color #fff
+
+  &.active
+    :background-color #ffd
+
+
+#tabs
+  :position absolute
+  :right 20px
+  :bottom 0
+
+  span
+    :display block
+    :float left
+    :background url(../images/admin/tabs/off-left.png) top left no-repeat
+    :padding 0
+    :margin 0
+    :margin-right 2px
+
+    a
+      :display block
+      :background url(../images/admin/tabs/off-right.png) top right no-repeat
+      :color #fff
+      :font-size 12px
+      :font-weight bold
+      :padding 5px 10px
+
+    &.on
+      :background url(../images/admin/tabs/on-left.png) top left no-repeat
+
+      a
+        :background url(../images/admin/tabs/on-right.png) top right no-repeat
+        :color #02588F
+
+
+.disabled
+  :filter alpha(opacity=50)
+  :-moz-opacity 0.5
+  :opacity 0.5
+
+
+.modal
+  :border 3px solid #0269AB
+  :padding 10px
+  :position absolute
+  :top 200px
+  :left 100px
+
+
+span.imagetitle
+  :font-size 10px
+
+
+.buttons
+  :padding-bottom 10px
+
+  a
+    :display block
+    :float left
+    :margin 0 7px 0 0
+    :background #EAEAEA url(../images/admin/button-bg.png) repeat-x scroll left top
+    :border 1px solid #ddd
+    :border-top 1px solid #eee
+    :border-left 1px solid #eee
+    :font-size 100%
+    :line-height 130%
+    :text-decoration none
+    :font-weight bold
+    :color #565656
+    :cursor pointer
+    :padding 5px 10px 6px 7px
+    :-moz-border-radius-bottomleft 11px
+    :-moz-border-radius-bottomright 11px
+    :-moz-border-radius-topleft 11px
+    :-moz-border-radius-topright 11px
+
+    img
+      :margin 0 3px -3px 0 !important
+      :padding 0
+      :border none
+      :width 16px
+      :height 16px
+
+    &:hover
+      :background-color #dff4ff
+      :border 1px solid #c2e1ef
+      :color #336699
+
+    &:active
+      :background-color #6299c5
+      :border 1px solid #6299c5
+      :color #fff
+
+    &.positive
+      :color #529214
+
+      &:hover
+        :background-color #E6EFC2
+        :border 1px solid #C6D880
+        :color #529214
+
+      &:active
+        :background-color #529214
+        :border 1px solid #529214
+        :color #fff
+
+    &.negative
+      :color #d12f19
+
+      &:hover
+        :background #fbe3e4
+        :border 1px solid #fbc2c4
+        :color #d12f19
+
+      &:active
+        :background-color #d12f19
+        :border 1px solid #d12f19
+        :color #fff
+
+  button
+    :display block
+    :float left
+    :margin 0 7px 0 0
+    :background #EAEAEA url(../images/admin/button-bg.png) repeat-x scroll left top
+    :border 1px solid #ddd
+    :border-top 1px solid #eee
+    :border-left 1px solid #eee
+    :font-size 100%
+    :line-height 130%
+    :text-decoration none
+    :font-weight bold
+    :color #565656
+    :cursor pointer
+    :padding 5px 10px 6px 7px
+    :width auto
+    :overflow visible
+    :padding 4px 10px 3px 7px
+    :-moz-border-radius-bottomleft 11px
+    :-moz-border-radius-bottomright 11px
+    :-moz-border-radius-topleft 11px
+    :-moz-border-radius-topright 11px
+
+    &[type]
+      :padding 5px 10px 5px 7px
+      :line-height 17px
+
+    img
+      :margin 0 3px -3px 0 !important
+      :padding 0
+      :border none
+      :width 16px
+      :height 16px
+
+
+button
+  &.button
+    :-moz-border-radius-bottomleft 11px
+    :-moz-border-radius-bottomright 11px
+    :-moz-border-radius-topleft 11px
+    :-moz-border-radius-topright 11px
+
+  &:hover
+    :background-color #dff4ff
+    :border 1px solid #c2e1ef
+    :color #336699
+
+  &.positive
+    :color #529214
+
+    &:hover
+      :background-color #E6EFC2
+      :border 1px solid #C6D880
+      :color #529214
+
+  &.negative
+    :color #d12f19
+
+    &:hover
+      :background #fbe3e4
+      :border 1px solid #fbc2c4
+      :color #d12f19

@@ -6,8 +6,6 @@ class Admin::BaseController < ApplicationController
   layout :set_popup_layout
 
   helper :easy_forms
-  # Overide field HTML for admin forms
-  helper "admin/easy_forms"
   helper "admin/filters"
   
 
