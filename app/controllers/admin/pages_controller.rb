@@ -53,6 +53,10 @@ class Admin::PagesController < Admin::BaseController
     end
   end
 
+  def sitemap
+    render :template => 'admin/pages/sitemap'
+  end
+
   def build_object
     return @object unless @object.nil?
 
