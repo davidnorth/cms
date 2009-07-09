@@ -1,9 +1,9 @@
 user = User.new({
   :firstname => 'David',
   :lastname => 'North',
-  :email => "davidnorth@gmail.com",
-  :password => '123123',
-  :password_confirmation => '123123'  
+  :email => "developers@bluestormnewmedia.co.uk",
+  :password => '6umtr33',
+  :password_confirmation => '6umtr33'  
 })
 user.admin = true
 user.save!
