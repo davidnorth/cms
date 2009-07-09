@@ -34,7 +34,7 @@ module NavigationHelper
     content_tag('ul', "\n#{list_items.join('')}\n", :id => "main_navigation")
   end
 
-  def render_site_map(pages = Page.find_published_top_level, depth = 1)
+  def render_site_map(pages = Page.published_top_level, depth = 1)
     list_items = []
     pages.each do |page|
       html = link_to_page(page)
@@ -43,7 +43,7 @@ module NavigationHelper
       end
       list_items << content_tag('li',html)
     end
-    content_tag('ul', list_items.join("\n"), :id => (depth == 1 ? 'sitemap' : nil))
+    content_tag('ul', list_items.join("\n"), :id => (depth == 1 ? 'primaryNav' : nil))
   end
   
   def link_to_page(page, prefix = '')

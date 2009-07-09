@@ -6,6 +6,7 @@ class Admin::BaseController < ApplicationController
   layout :set_popup_layout
 
   helper :easy_forms
+  helper :navigation
   helper "admin/filters"
   
 
