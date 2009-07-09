@@ -1,19 +1,19 @@
 development:
   adapter: mysql
-  database: rails_cms_dev
+  database: police_dev
   username: root
   password: 
   host: localhost
 
 test:
   adapter: mysql
-  database: rails_cms_test
+  database: police_test
   username: root
   password: 
 
 production:
   adapter: mysql
-  database: cms
+  database: police_live
   username: root
-  password: 
+  password: QvbzMWN2.wsg
   host: localhost
