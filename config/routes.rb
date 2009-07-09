@@ -11,7 +11,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :pages, :collection => {
       :children => :get, :reorder_children => :get, :reorder => :post, 
       :add_file_upload => :post, :delete_file_upload => :post, 
-      :add_image => :post, :delete_image => :post, :reorder_images => :post
+      :add_image => :post, :delete_image => :post, :reorder_images => :post, :sitemap => :get
       }
     admin.resources :images, :member => {:crop_settings => :get}
     admin.resources :file_uploads
