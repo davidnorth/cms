@@ -34,7 +34,7 @@ module NavigationHelper
     content_tag('ul', "\n#{list_items.join('')}\n", :id => "main_navigation")
   end
 
-  def render_site_map(pages = Page.published_top_level, depth = 1)
+  def render_site_map(pages = Page.find_by_title('Global nav').published_children_for_nav, depth = 1)
     list_items = []
     pages.each do |page|
       html = link_to_page(page)
