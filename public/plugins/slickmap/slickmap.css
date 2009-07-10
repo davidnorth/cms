@@ -224,9 +224,9 @@ div#map_canvas #utilityNav li a:visited:before {
 	Bluestorm Styles
 ------------------------------------------------------------ */
 
-div#map_canvas ul li li
+div#map_canvas ul li li a
 {
-	font-size:0.7em !important;
+	font-size:11px !important;
 }
 
 div#map_canvas li li a:link:before,
