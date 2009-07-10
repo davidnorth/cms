@@ -37,11 +37,11 @@ module NavigationHelper
   def render_site_map(pages = Page.find_by_title('Global nav').published_children_for_nav, depth = 1)
     list_items = []
     pages.each do |page|
-      html = link_to_page(page)
+      html = link_to(page.nav_title, "/"+page.slug_path)
       if !page.archive? and page.published_children_for_nav.length > 0
         html << render_site_map(page.published_children_for_nav, depth + 1)
       end
-      list_items << content_tag('li',html)
+      list_items << content_tag('li',html, :id => page.slug)
     end
     content_tag('ul', list_items.join("\n"), :id => (depth == 1 ? 'primaryNav' : nil))
   end

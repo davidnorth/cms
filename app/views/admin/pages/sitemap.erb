@@ -1,5 +1,21 @@
 <% content_for :head do %>
 <link href="/plugins/slickmap/slickmap.css" type="text/css" rel="stylesheet">
+<style type="text/css">
+div#content
+{
+	padding:0px;
+}
+
+div#content h1
+{
+	display:none;
+}
+
+div#map_canvas #primaryNav li
+{
+	width:<%= 100/(Page.find_by_title('Global nav').published_children_for_nav.size - 1) %>%;
+}
+</style>
 <% end %>
 <div id="map_canvas" class="sitemap">
 <%= render_site_map %>

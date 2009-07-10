@@ -8,6 +8,11 @@
 	4 columns (25%). 5 columns would be 20%, 6 columns would 
 	be 16.6%, etc. 
 ------------------------------------------------------------ */
+div#map_canvas
+{
+	padding-top:50px;
+	padding-left:20px;
+}
 
 div#map_canvas #primaryNav li {
 	width: 25%;
@@ -40,6 +45,7 @@ div#map_canvas a {
 div#map_canvas ol, div#map_canvas ul {
 	list-style: none;
 	margin-left:0px;
+	padding-left:0px;
 }
 
 div#map_canvas ol li, div#map_canvas ul li
@@ -212,4 +218,25 @@ div#map_canvas #utilityNav li a:visited:before {
 	color: #ccae14;
 	font-size: 9px;
 	margin-bottom: 3px;
+}
+
+/* ------------------------------------------------------------
+	Bluestorm Styles
+------------------------------------------------------------ */
+
+div#map_canvas ul li li
+{
+	font-size:0.7em !important;
+}
+
+div#map_canvas li li a:link:before,
+div#map_canvas li li a:visited:before 
+{
+	font-size:8px;
+}
+
+div#map_canvas li li li a:link:before,
+div#map_canvas li li li a:visited:before 
+{
+	content: " ";
 }
