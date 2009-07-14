@@ -27,8 +27,6 @@ ActionController::Routing::Routes.draw do |map|
 
   # All other pages
   map.with_options(:controller => 'public/pages') do |m|
-    m.filter "products/filter/:filter", :action => "view_filter"
-    m.view_product "products/:range/:range_category/:product", :action => "view_product"
     m.homepage     '',                        :action => 'view', :slug_path => 'home'
     m.view_page    '*slug_path.:format',      :action => 'view'
     m.view_page    '*slug_path',              :action => 'view'
