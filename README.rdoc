@@ -15,6 +15,6 @@ A minimalist CMS with maximum flexibility. Designed for small teams and web deve
 
   edit db/seed.rb and add your own user details
 
-  rake db:bootsrap
+  rake db:bootstrap
 
   script/server
