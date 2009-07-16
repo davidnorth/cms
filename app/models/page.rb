@@ -10,7 +10,14 @@ class Page < ActiveRecord::Base
   named_scope :with_type, lambda { |q| { :conditions => {'type' => q.to_s.camelize} } }
   named_scope_with_exact_match :with_parent, :parent_id
   
-  has_many :attachments
+  has_many :attachments, :class_name => "::Attachment", :dependent => :destroy
+
+  %w(image file_upload).each do |t|
+    define_method(t.pluralize) do
+      attachments.of_type(t.camelize).map(&:attachable)
+    end
+  end
+
   
   validates_presence_of :title
 

@@ -108,8 +108,8 @@ a {
 /* Forms */
 
 fieldset {
-  background-color: #E5F0F6;
-  border: 0;
+  background-color: #fafafa;
+  border: 1px solid #eee;
   margin-bottom: 20px;
   padding: 20px;
 }
@@ -483,3 +483,21 @@ button.positive, .buttons a.positive{
     color:#fff;
 }
 
+
+
+
+
+
+#content_browser {
+ background-color: #fafafa;
+ border: 1px solid #ddd;
+ width: 280px;
+ padding:10px;
+}
+#content_browser .results {
+  height:400px;
+  padding:10px;
+  overflow:auto;
+  border: 1px solid #ddd;
+  background-color:#fff;
+}

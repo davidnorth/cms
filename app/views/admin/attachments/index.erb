@@ -1,0 +1,9 @@
+<div id="content_browser">
+  <% form_tag(admin_asset_search_path, :method => :get) do %>
+    <label for="type">Type</label> &nbsp;<%= select_tag :type, options_for_select([['Images','image'],['Files','file_upload']]) %>
+    <br />
+    <label for="q">Search</label> <%= text_field_tag :q, params[:q] %>
+    <input type="submit" value="Apply" />
+  <% end %>
+  <div class="results"></div>  
+</fieldset>

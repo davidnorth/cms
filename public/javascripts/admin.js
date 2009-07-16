@@ -1,13 +1,10 @@
 $(document).ready(function(){
   
-  $(".sortable").sortable({
-    axis: 'y',
-    stop: function(s){
-      url = $(this).attr('data-remote') + '?' + $(this).sortable('serialize');
-      data = {authenticity_token: authenticity_token}
-      $.post(url, data );
-      }
+  $(".ui-tabs").tabs({
+    load: function(event, ui) { doContentLoaded() }
   });
+
+
 
   $("#site-map").treeTable();
 
@@ -22,8 +19,31 @@ $(document).ready(function(){
     $(this).dialog({ autoOpen: false, buttons: buttons, resizeable: true })
   });
 
+  doContentLoaded();
+  
 })
 
+
+// Things that need setting up both when document ready and after some content has loaded by ajax
+function doContentLoaded()
+{
+
+  $("#content_browser form").submit(function(){
+    data = $(this).serialize();
+    $("#content_browser .results").load(this.action, data);
+    return false;
+  });
+
+  $(".sortable").sortable({
+    axis: 'y',
+    stop: function(s){
+      url = $(this).attr('data-remote') + '?' + $(this).sortable('serialize');
+      data = {authenticity_token: authenticity_token}
+      $.post(url, data );
+      }
+  });  
+  
+}
 
 
 

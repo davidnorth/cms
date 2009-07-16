@@ -3,7 +3,7 @@ class Admin::BaseController < ApplicationController
   before_filter :require_user
   before_filter :require_admin
 
-  layout :set_popup_layout
+  layout :set_layout
 
   helper :easy_forms
   helper :navigation
@@ -58,7 +58,8 @@ class Admin::BaseController < ApplicationController
     end
   end
 
-  def set_popup_layout
+  def set_layout
+    return false if request.xhr?
     if params[:popup] and !params[:popup].blank?
       'admin_dialog'
     else

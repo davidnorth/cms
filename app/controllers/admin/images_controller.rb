@@ -1,6 +1,5 @@
 class Admin::ImagesController < Admin::BaseController
   setup_resource_controller
-  layout :set_popup_layout
 
   show.response do |wants|
     wants.html 

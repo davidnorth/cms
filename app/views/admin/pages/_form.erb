@@ -1,10 +1,6 @@
 <%= hidden_field_tag :parent, params[:parent] %>
 <%= hidden_field_tag :type, params[:type] %>
 
-<% unless @page.new_record? or !@page.visitable? %>
-  <p><%= link_to 'View page: /'+@page.slug_path, '/'+@page.slug_path %></p>
-<% end %>
-
-<%= render :partial => "admin/page_types/#{@page.admin_template}", :locals => {:f => f} %>
+<%= render "admin/page_types/#{@page.admin_template}", :f => f %>
 
 <%= render 'admin/generic/resource_buttons' %>

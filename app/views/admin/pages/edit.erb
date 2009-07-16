@@ -1,5 +1,21 @@
 <% @page_title = "Editing &#8220;#{@page}&#8221;" %>
 
-<% update_form do |f| %>
-  <%= partial 'form', :f => f %>
-<% end %>
+<div class="ui-tabs ajax">
+	<ul>
+		<li><a href="#edit">Edit</a></li>
+		<li><a href="<%= admin_page_attachments_path(@page) %>">Attachments</a></li>
+		<li><a href="#">Contents</a></li>
+		<li><a href="#">History</a></li>
+		<li><a href="#">Permissions</a></li>
+	</ul>
+
+	<div id="edit">
+
+    <% update_form do |f| %>
+      <%= partial 'form', :f => f %>
+    <% end %>
+
+	</div>
+</div>
+
+

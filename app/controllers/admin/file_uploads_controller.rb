@@ -1,6 +1,5 @@
 class Admin::FileUploadsController < Admin::BaseController
   setup_resource_controller
-  layout :set_popup_layout
 
   private
   

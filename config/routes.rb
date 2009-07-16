@@ -12,7 +12,9 @@ ActionController::Routing::Routes.draw do |map|
       :children => :get, :reorder_children => :get, :reorder => :post, 
       :add_file_upload => :post, :delete_file_upload => :post, 
       :add_image => :post, :delete_image => :post, :reorder_images => :post, :sitemap => :get
-      }
+      } do |pages|
+      pages.resources :attachments, :collection => {:reorder => :post}
+    end
     admin.resources :images, :member => {:crop_settings => :get}
     admin.resources :file_uploads
     admin.resources :file_upload_categories
@@ -20,7 +22,10 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :users
     admin.resource :session
     admin.resources :members, :member => { :suspend => :put, :unsuspend => :put }
+    admin.asset_search 'assets', :controller => 'attachments', :action => 'search'
   end
+
+
   map.admin_dashboard 'admin', :controller => 'admin/pages', :action => 'index'
   map.flex_crop '/admin/images/:id/crop.xml', :controller => 'admin/images', :action => 'flex_crop'
 
