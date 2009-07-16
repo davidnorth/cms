@@ -21,3 +21,7 @@ Factory.define :page do |p|
   p.association :parent, :factory => :top_level_folder
 end
 
+Factory.define :file_upload do |f|
+  f.title "File Title"
+  f.file { File.open( File.join(RAILS_ROOT,'spec/fixtures/files/test.xls')) }
+end
