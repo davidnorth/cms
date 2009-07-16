@@ -2,9 +2,17 @@
 
 A minimalist CMS with maximum flexibility. Designed for small teams and web developers.
 
-==Quick Start
+  rake gems:install 
 
   cp config/database.yml.example config/database.yml
+
+  edit your database settings
+
   rake db:create
-  rake db:boostrap
+  rake db:schema:load
+
+  edit db/seed.rb and add your own user details
+
+  rake db:bootstrap
+
   script/server

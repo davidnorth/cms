@@ -6,7 +6,7 @@ module ImageSpecHelper
   end
 end
 
-describe Page do
+describe Image do
   include ImageSpecHelper
 
   before(:each) do

@@ -4,3 +4,6 @@ public/upload
 upload
 .autotest
 db/development_structure.sql
+config/database.yml
+*.sql
+*.DS_store

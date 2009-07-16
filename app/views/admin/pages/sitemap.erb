@@ -3,17 +3,21 @@
 <style type="text/css">
 div#content
 {
-	padding:0px;
+  padding:0px;
 }
-
+ 
 div#content h1
 {
-	display:none;
+  display:none;
 }
-
+ 
 div#map_canvas #primaryNav li
 {
-	width:<%= 100/(Page.find_by_title('Global nav').published_children_for_nav.size - 1) %>%;
+  <%- if Page.find_by_title('Global nav').published_children_for_nav.size > 1 %>
+  width: <%= 100/(Page.find_by_title('Global nav').published_children_for_nav.size - 1) %>%;
+  <%- else %>
+  width: 10%;
+  <%- end %>
 }
 </style>
 <% end %>
