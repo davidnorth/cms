@@ -10,7 +10,13 @@ end
 Factory.define :top_level_folder , :class => Folder do |p|
   p.title "Global Nav"
   p.published true
+  p.locked true
   p.position 1
+  p.publish_date { 1.week.ago }
+end
+
+Factory.define :folder , :class => Folder do |p|
+  p.title "Folder"
   p.publish_date { 1.week.ago }
 end
 
@@ -19,5 +25,7 @@ Factory.define :page do |p|
   p.position 1
   p.publish_date { 1.week.ago }
   p.association :parent, :factory => :top_level_folder
+  p.intro Faker::Lorem.sentence(10)
+  p.body Faker::Lorem.paragraphs(2).join("\n\n")
 end
 
