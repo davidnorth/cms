@@ -5,7 +5,7 @@ class Admin::AttachmentsController < Admin::BaseController
   def search
     params[:type] ||= 'image'
     @klass = params[:type].camelize.constantize
-    @results = @klass.with_keyword(params[:q]).paginate(:page => params[:page])
+    @results = @klass.with_keyword(params[:q]).paginate(:page => params[:page], :per_page => 2)
   end
   
 end

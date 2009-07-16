@@ -1,10 +1,18 @@
+$.fn.ajaxGetLink = function(target){
+  var collection = this;
+  this.each(function(){
+    $(this).click(function(){
+      target.load( this.href );
+      return false;
+    })
+  });
+}
+
 $(document).ready(function(){
   
   $(".ui-tabs").tabs({
     load: function(event, ui) { doContentLoaded() }
   });
-
-
 
   $("#site-map").treeTable();
 
@@ -19,12 +27,14 @@ $(document).ready(function(){
     $(this).dialog({ autoOpen: false, buttons: buttons, resizeable: true })
   });
 
+  $("body").ajaxComplete(function(){
+    $("#content_browser .pagination a").ajaxGetLink($("#content_browser .results"));
+  })
+  
   doContentLoaded();
   
 })
 
-
-// Things that need setting up both when document ready and after some content has loaded by ajax
 function doContentLoaded()
 {
 
@@ -33,6 +43,7 @@ function doContentLoaded()
     $("#content_browser .results").load(this.action, data);
     return false;
   });
+  
 
   $(".sortable").sortable({
     axis: 'y',
@@ -42,7 +53,7 @@ function doContentLoaded()
       $.post(url, data );
       }
   });  
-  
+
 }
 
 
