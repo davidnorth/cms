@@ -9,4 +9,10 @@ describe Attachment do
     Attachment.new.should_not be_valid
   end
 
+  it "should be valid if it has a page and attachable" do
+    file_upload = Factory(:file_upload)
+    attachment = Attachment.new(:page => @page, :attachable => file_upload)
+    attachment.should be_valid
+  end
+  
 end
