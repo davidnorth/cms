@@ -10,6 +10,8 @@ class Page < ActiveRecord::Base
   named_scope :with_type, lambda { |q| { :conditions => {'type' => q.to_s.camelize} } }
   named_scope_with_exact_match :with_parent, :parent_id
   
+  has_many :attachments
+  
   validates_presence_of :title
 
   acts_as_tree :order => 'position'

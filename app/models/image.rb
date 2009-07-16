@@ -1,5 +1,7 @@
 class Image < ActiveRecord::Base
 
+  has_many :attachments, :as => :attachable, :dependent => :destroy
+
   validates_presence_of :image
 
   has_attached_file :image, 

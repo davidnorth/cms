@@ -1,5 +1,7 @@
 class FileUpload < ActiveRecord::Base
 
+  has_many :attachments, :as => :attachable, :dependent => :destroy
+  
   ALLOWED_FILE_UPLOAD_EXTENSIONS = %w(jpg jpeg pdf doc xls png gif)
 
   has_attached_file :file, {
