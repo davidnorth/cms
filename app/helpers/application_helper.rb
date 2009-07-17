@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+	def asset_exists?(source)
+    !rails_asset_id(source).blank?
+  end
+
   def partial(name, locals = {})
     locals = {:object => object || nil}.update(locals)
     render(:partial => name, :locals => locals)

@@ -14,4 +14,16 @@ class FileUpload < ActiveRecord::Base
   #validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/gif', 'image/png']
 
 
+  #
+  # Content item
+  #
+  
+  def thumb_url(size = 'large')
+    "/images/admin/filetypes/#{size}/#{file_ext.downcase}.png"
+  end
+
+  def file_ext
+    File.extname(file_file_name).gsub(".","")
+  end
+
 end

@@ -6,7 +6,7 @@ class Admin::AttachmentsController < Admin::BaseController
     @page = parent_object
     params[:type] ||= 'image'
     @klass = params[:type].camelize.constantize
-    @results = @klass.with_keyword(params[:q]).paginate(:page => params[:page], :per_page => 20)
+    @content_items = @klass.with_keyword(params[:q]).paginate(:page => params[:page], :per_page => 20)
   end
   
 end

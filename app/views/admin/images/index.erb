@@ -1,9 +1,9 @@
 <%= render :partial => 'menu' %>
 
 <% for image in @images -%>
-  <table class="thumb"><tr><td>
+  <div class="thumb">
   <%= link_to image_tag(image.image.url('thumb')), admin_image_path(image, :popup => params[:popup]) %>
-  </td></tr></table>
+  </div>
 <% end %>
 
 <br clear="left" />

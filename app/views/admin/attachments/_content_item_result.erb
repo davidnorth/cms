@@ -1,0 +1,19 @@
+<div class="content_item <%= content_item.class.to_s %>">
+  
+  <div class="thumb">
+  <%= image_tag(content_item.thumb_url, :size => "50x50") %>
+  </div>
+
+  <p><strong><%= content_item.title %></strong></p>
+
+  <% attachment = @page.attachments.build(:attachable_type => content_item.class.to_s, :attachable_id => content_item.to_i) %>
+  <% form_for attachment, :url => admin_page_attachments_path(@page) do |f| %>
+    <%= f.hidden_field :attachable_type  %>
+    <%= f.hidden_field :attachable_id  %>
+    <p class="buttons">
+      <%= button "Add to page", :icon => 'add' %>
+    </p>
+  <% end %>
+
+  <br clear="left" />
+</div>

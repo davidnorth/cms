@@ -48,4 +48,17 @@ class Image < ActiveRecord::Base
     end    
   end
 
+
+  #
+  # Content item
+  #
+  
+  def thumb_url
+    image.url('thumb')
+  end
+    
+  def title
+    alt
+  end
+
 end
