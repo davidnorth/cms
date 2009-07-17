@@ -2,6 +2,8 @@ class Admin::AttachmentsController < Admin::BaseController
   setup_resource_controller
   belongs_to :page
   
+  create.wants.js { render :action => "create" }
+
   def search
     @page = parent_object
     params[:type] ||= 'image'

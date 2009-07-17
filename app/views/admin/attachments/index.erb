@@ -9,44 +9,7 @@
 </div>
 
 <div id="page_attachments">
-  
-  <fieldset>
-    <legend>Images</legend>
-    <%= render @page.images %>
-    <br clear="left" />
-  </fieldset>
-  
-  <fieldset>
-    <legend>Files</legend>
-
-    <table class="index">
-      <tr>
-        <th colspan="2">Title</th>
-        <th>Details</th>
-        <th>&nbsp;</th>
-      </tr>
-      <% for content_item in @page.file_uploads %>
-        <tr>
-          <td width="20">
-            <%= image_tag(content_item.thumb_url('small')) %>
-          </td>
-          <td>
-            <%= content_item.title %>
-          </td>
-          <td>
-            <%= content_item.file_content_type %>
-          </td>
-          <td>
-            <%= number_to_human_size File.size(content_item.file.path) %>
-            (<%= content_item.file.content_type %>)
-          </td>
-          <td>&nbsp;</td>
-        </tr>
-      <% end %>
-      </tr>
-    </table>
-  </fieldset>
-  
+  <%= render 'attachments_list' %>  
 </div>
 
 <br clear="left" />

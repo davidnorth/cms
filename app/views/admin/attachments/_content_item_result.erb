@@ -1,4 +1,4 @@
-<div class="content_item <%= content_item.class.to_s %>">
+<div class="content_item <%= content_item.class.to_s %>" id="<%= dom_id content_item, :result %>">
   
   <div class="thumb">
   <%= image_tag(content_item.thumb_url, :size => "50x50") %>

@@ -1,0 +1,4 @@
+$('#page_attachments').html('<%= escape_javascript(render('attachments_list')) %>');
+
+$('#<%= dom_id @attachment.attachable, :result %>').hide();
+
