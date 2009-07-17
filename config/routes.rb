@@ -13,7 +13,7 @@ ActionController::Routing::Routes.draw do |map|
       :add_file_upload => :post, :delete_file_upload => :post, 
       :add_image => :post, :delete_image => :post, :reorder_images => :post, :sitemap => :get
       } do |pages|
-      pages.resources :attachments, :collection => {:reorder => :post}
+      pages.resources :attachments, :collection => {:reorder => :post, :search => :get}
     end
     admin.resources :images, :member => {:crop_settings => :get}
     admin.resources :file_uploads
@@ -22,7 +22,6 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :users
     admin.resource :session
     admin.resources :members, :member => { :suspend => :put, :unsuspend => :put }
-    admin.asset_search 'assets', :controller => 'attachments', :action => 'search'
   end
 
 

@@ -237,19 +237,23 @@ table.thumb {
   border-spacing: 0;
   width: 86px;
   height: 86px;
-  position: relative;
+  float: left;
+  margin: 0 5px 5px 0;
 }
 table.thumb td {
   background-color: #fff;
   padding: 3px;
   text-align: center;
   vertical-align: middle;
+  display:block;
+  position: relative;
 }
-table.thumb span.actions {
+.thumb span.actions {
   display: block;
   position: absolute;
-  bottom: 2px;
-  right: 2px;
+  right: 4px;
+  bottom: 4px;
+  z-index: 1000;
   margin: 0;
   padding: 0;
 }
@@ -491,13 +495,18 @@ button.positive, .buttons a.positive{
 #content_browser {
  background-color: #fafafa;
  border: 1px solid #ddd;
- width: 280px;
+ width: 290px;
  padding:10px;
+ float:right; 
 }
 #content_browser .results {
   height:400px;
-  padding:10px;
+  padding:5px;
   overflow:auto;
   border: 1px solid #ddd;
   background-color:#fff;
+}
+#page_attachments {
+  margin-right:320px;
+  height:400px;
 }

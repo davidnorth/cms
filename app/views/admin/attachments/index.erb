@@ -1,9 +1,32 @@
 <div id="content_browser">
-  <% form_tag(admin_asset_search_path, :method => :get) do %>
+  <% form_tag(search_admin_page_attachments_path, :method => :get) do %>
     <label for="type">Type</label> &nbsp;<%= select_tag :type, options_for_select([['Images','image'],['Files','file_upload']]) %>
     <br />
     <label for="q">Search</label> <%= text_field_tag :q, params[:q] %>
     <input type="submit" value="Apply" />
   <% end %>
   <div class="results"></div>  
-</fieldset>
+</div>
+
+<div id="page_attachments">
+  
+  <fieldset>
+    <legend>Images</legend>
+    <% for image in @page.images %>
+      <table class="thumb"><tr><td>
+        <%= image_tag(image.image.url('thumb')) %>
+      </td></tr></table>
+    <% end %>
+    <br clear="left" />
+  </fieldset>
+  
+  <fieldset>
+    <legend>Files</legend>
+    <% for file_upload in @page.file_uploads %>
+    <p><%= file_upload.title %></p>
+    <% end %>
+  </fieldset>
+  
+</div>
+
+<br clear="left" />

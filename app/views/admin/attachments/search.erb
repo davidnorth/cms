@@ -1,9 +1,10 @@
 <% if @results.any? %>
-  <% for result in @results %>
 
+  <% for result in @results %>
     <%= render "admin/content_types/#{params[:type]}", :object => result %>
-  
   <% end %>
+
+  <br clear="left" />  
   <%= will_paginate @results %>
 <% else %>
   <p>No results</p>

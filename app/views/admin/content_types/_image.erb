@@ -1,3 +1,25 @@
-<table class="thumb"><tr><td>
-<%= image_tag(object.image.url('thumb')) %>
+<div class="content_item image">
+  
+  <table class="thumb"><tr><td>
+  <%= image_tag(object.image.url('thumb')) %>
+  <span class="actions">
+    <%= link_to(image_tag("/images/admin/plus.png"),  
+    admin_page_attachments_path(@page, :attachment => {:attachable_type => 'Image', :attachable_id => object.id})
+    ) %>
+  </span>
 </td></tr></table>
+<p><strong><%= object.alt %></strong></p>
+
+  <% attachment = @page.attachments.build(:attachable_type => object.class.to_s, :attachable_id => object.to_i) %>
+  <% form_for attachment, :url => admin_page_attachments_path(@page) do |f| %>
+    <%= f.hidden_field :attachable_type  %>
+    <%= f.hidden_field :attachable_id  %>
+
+    <p class="buttons">
+      <%= button "Add to page", :icon => 'add' %>
+    </p>
+
+  <% end %>
+
+</div>
+<br clear="left" />
