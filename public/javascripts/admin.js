@@ -32,6 +32,19 @@ $(document).ready(function(){
     $("#content_browser .pagination a").ajaxGetLink($("#content_browser .results"));
 
   })
+
+
+  $('table.sortable').tableDnD({
+    onDragStyle: {'color': '#ff0000'},
+    onDrop: function(table,rows){ 
+      var i = 0;
+      $(table.tBodies[0].rows).each(function(){
+        $(this).find('input').val(i);
+        i++;
+      });
+    },
+    serializeRegexp: /[^_]*$/ 
+  });
   
   doContentLoaded();
   

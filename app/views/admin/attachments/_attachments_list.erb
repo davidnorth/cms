@@ -7,16 +7,18 @@
 <fieldset>
   <legend>Files</legend>
 
-  <table class="index">
-    <tr>
+  <table class="index sortable" id="content_items">
+    <tr class="nodrop nodrag">
       <th colspan="2">Title</th>
       <th>Details</th>
       <th>&nbsp;</th>
     </tr>
-    <% for content_item in @page.file_uploads %>
-      <tr>
+    <% for attachment in @page.attachments.of_type('FileUpload') %>
+      <% content_item = attachment.attachable %>
+      <tr id="<%= dom_id content_item %>">
         <td width="20">
           <%= image_tag(content_item.thumb_url('small')) %>
+          <%= text_field_tag "content_item_#{content_item.id}_position", attachment.position, :size => 3 %>
         </td>
         <td>
           <%= content_item.title %>
