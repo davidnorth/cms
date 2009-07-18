@@ -1,4 +1,11 @@
-<%= render 'attachments_form', :attachments => @page.attachments.of_type('Image'), :legend => 'Images' %>
+<% form_tag batch_update_admin_page_attachments_path, :method => :put do %>
 
-<%= render 'attachments_form', :attachments => @page.attachments.of_type('FileUpload'), :legend => 'Files' %>
+  <%= render 'attachments_form', :attachments => @page.attachments.of_type('Image'), :legend => 'Images' %>
 
+  <%= render 'attachments_form', :attachments => @page.attachments.of_type('FileUpload'), :legend => 'Files' %>
+
+  <p class="buttons">
+    <%= button "Save changes", :icon => 'tick' %>
+  </p>
+
+<% end %>

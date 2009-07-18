@@ -1,4 +1,3 @@
-<% form_tag batch_update_admin_page_attachments_path, :method => :put do %>
 <fieldset>
   <legend><%= legend %></legend>
   
@@ -33,13 +32,9 @@
       <% end %>
       </tr>
     </table>
-    <p class="buttons">
-      <%= button "Save", :icon => 'tick' %>
-    </p>
     
   <% else %>
     <p>Nothing attachments of this type.</p>
   <% end %>
 
 </fieldset>
-<% end %>

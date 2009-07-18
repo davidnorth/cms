@@ -1,3 +1,5 @@
+<div class="clearfix">
+
 <div id="content_browser">
   <% form_tag(search_admin_page_attachments_path, :method => :get) do %>
     <label for="type">Type</label> &nbsp;<%= select_tag :type, options_for_select([['Images','image'],['Files','file_upload']]) %>
@@ -12,4 +14,4 @@
   <%= render 'attachments_list' %>  
 </div>
 
-<br clear="left" />
+</div>

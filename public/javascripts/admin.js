@@ -20,7 +20,8 @@ $.fn.ajaxForm = function(){
 $(document).ready(function(){
   
   $(".ui-tabs").tabs({
-    load: function(event, ui) { doContentLoaded() }
+    load: function(event, ui) { doContentLoaded() },
+    cache: true
   });
 
   $("#site-map").treeTable();
