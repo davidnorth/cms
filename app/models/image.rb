@@ -4,8 +4,6 @@ class Image < ActiveRecord::Base
 
   validates_presence_of :image
   
-  named_scope :with_keyword, lambda {|q| {:conditions => ["alt LIKE ?", "%#{q}%"]} }
-
   has_attached_file :image, 
     :url =>                   "/upload/images/:id/:style_:basename.:extension",
     :path => ":rails_root/public/upload/images/:id/:style_:basename.:extension",
@@ -53,6 +51,10 @@ class Image < ActiveRecord::Base
   # Content item
   #
   
+  named_scope :with_keyword, lambda {|q| {:conditions => ["alt LIKE ?", "%#{q}%"]} }
+  named_scope :excluding_ids, lambda {|ids| {:conditions => ["id NOT IN (?)", ids]} }
+
+
   def thumb_url(size = 'thumb')
     image.url(size)
   end

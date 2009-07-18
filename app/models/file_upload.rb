@@ -2,7 +2,6 @@ class FileUpload < ActiveRecord::Base
 
   has_many :attachments, :as => :attachable, :dependent => :destroy
   
-  named_scope :with_keyword, lambda {|q| {:conditions => ["title LIKE ?", "%#{q}%"]} }
 
   ALLOWED_FILE_UPLOAD_EXTENSIONS = %w(jpg jpeg pdf doc xls png gif)
 
@@ -18,6 +17,9 @@ class FileUpload < ActiveRecord::Base
   # Content item
   #
   
+  named_scope :with_keyword, lambda {|q| {:conditions => ["title LIKE ?", "%#{q}%"]} }
+  named_scope :excluding_ids, lambda {|ids| {:conditions => ["id NOT IN (?)", ids]} }
+
   def thumb_url(size = 'large')
     "/images/admin/filetypes/#{size}/#{file_ext.downcase}.png"
   end
