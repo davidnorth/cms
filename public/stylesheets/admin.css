@@ -506,7 +506,7 @@ button.positive, .buttons a.positive{
 
 
 #content_browser {
- background-color: #fafafa;
+ background-color: #eee;
  border: 1px solid #ddd;
  width: 290px;
  padding:10px;
@@ -520,7 +520,7 @@ button.positive, .buttons a.positive{
   background-color:#fff;
 }
 #page_attachments {
-  margin-right:320px;
+  margin-right:330px;
   height:400px;
 }
 #content_browser .results .content_item {

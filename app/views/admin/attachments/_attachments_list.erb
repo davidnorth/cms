@@ -1,43 +1,4 @@
-<fieldset>
-  <legend>Images</legend>
-  <%= render @page.images %>
-  <br clear="left" />
-</fieldset>
+<%= render 'attachments_form', :attachments => @page.attachments.of_type('Image'), :legend => 'Images' %>
 
-<% form_tag batch_update_admin_page_attachments_path, :method => :put do %>
-<fieldset>
-  <legend>Files</legend>
-  <table class="index sortable" id="content_items">
-    <tr class="nodrop nodrag">
-      <th colspan="2">Title</th>
-      <th>Details</th>
-      <th>&nbsp;</th>
-    </tr>
-    <% for attachment in @page.attachments.of_type('FileUpload') %>
-      <% content_item = attachment.attachable %>
-      <tr id="<%= dom_id content_item %>">
-        <td width="20">
-          <%= image_tag(content_item.thumb_url('small')) %>
-        </td>
-        <td>
-          <%= text_field_tag "attachments[#{attachment.id}][position]", attachment.position, :size => 2, :class => 'position' %>
-          <%= content_item.title %>
-        </td>
-        <td>
-          <%= content_item.file_content_type %>
-        </td>
-        <td>
-          <%= number_to_human_size File.size(content_item.file.path) %>
-          (<%= content_item.file.content_type %>)
-        </td>
-        <td>&nbsp;</td>
-      </tr>
-    <% end %>
-    </tr>
-  </table>
-  <p class="buttons">
-    <%= button "Save changes", :icon => 'tick' %>
-  </p>
-</fieldset>
+<%= render 'attachments_form', :attachments => @page.attachments.of_type('FileUpload'), :legend => 'Files' %>
 
-<% end %>

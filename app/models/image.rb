@@ -53,8 +53,8 @@ class Image < ActiveRecord::Base
   # Content item
   #
   
-  def thumb_url
-    image.url('thumb')
+  def thumb_url(size = 'thumb')
+    image.url(size)
   end
     
   def title

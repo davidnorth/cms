@@ -1,0 +1,45 @@
+<% form_tag batch_update_admin_page_attachments_path, :method => :put do %>
+<fieldset>
+  <legend><%= legend %></legend>
+  
+  <% if attachments.any? %>
+
+    <table class="index sortable" id="content_items">
+      <tr class="nodrop nodrag">
+        <th colspan="2">Title</th>
+        <th>Details</th>
+        <th>&nbsp;</th>
+      </tr>
+      <% for attachment in attachments %>
+        <% content_item = attachment.attachable %>
+        <tr id="<%= dom_id content_item %>">
+          <td width="20">
+            <%= image_tag(content_item.thumb_url('small'), :size => "25x25") %>
+          </td>
+          <td>
+            <%= text_field_tag "attachments[#{attachment.id}][position]", attachment.position, :size => 2, :class => 'position' %>
+            <%= content_item.title %>
+          </td>
+          <td>
+            Details
+          </td>
+          <td class="actions" width="100">
+            <label>
+              <%= check_box_tag "attachments[#{attachment.id}][_delete]", true, false %>
+              Remove
+            </label>
+          </td>
+        </tr>
+      <% end %>
+      </tr>
+    </table>
+    <p class="buttons">
+      <%= button "Save", :icon => 'tick' %>
+    </p>
+    
+  <% else %>
+    <p>Nothing attachments of this type.</p>
+  <% end %>
+
+</fieldset>
+<% end %>

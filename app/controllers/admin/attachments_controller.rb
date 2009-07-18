@@ -6,9 +6,19 @@ class Admin::AttachmentsController < Admin::BaseController
 
   def batch_update
     params[:attachments].each do |attachment_id, attributes|
-      parent_object.attachments.find(attachment_id).update_attributes(attributes)
+      @page = parent_object
+      attachment = @page.attachments.find(attachment_id)
+      if attributes[:_delete]
+        attachment.destroy
+      else
+        attachment.update_attributes(attributes)
+      end
     end
-    redirect_to collection_url
+    
+    respond_to do |wants|
+      wants.html { redirect_to collection_url }
+      wants.js { render :action => "batch_update" }
+    end
   end
   
   def search

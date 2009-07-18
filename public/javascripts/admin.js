@@ -8,6 +8,15 @@ $.fn.ajaxGetLink = function(target){
   });
 }
 
+$.fn.ajaxForm = function(){
+  this.unbind('submit').submit(function(){
+    data = $(this).serializeArray();
+    $.post(this.action, data, null, 'script');
+    return false;
+  });
+}
+
+
 $(document).ready(function(){
   
   $(".ui-tabs").tabs({
@@ -43,16 +52,12 @@ function doContentLoaded()
 
   $("#content_browser > form").submit(function(){
     data = $(this).serialize();
-    $("#content_browser .results").load(this.action, data, function(){
-      $("#content_browser .results form").submit(function(){
-        data = $(this).serializeArray();
-        $.post(this.action, data, null, 'script');
-        return false;
-      });
-    });
+    $("#content_browser .results").load(this.action, data);
     return false;
   });  
-
+  
+  $("#content_browser .results form, #page_attachments form").ajaxForm();
+  
   $(".sortable").sortable({
     axis: 'y',
     stop: function(s){
