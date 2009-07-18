@@ -1,7 +1,5 @@
 class Image < ActiveRecord::Base
 
-  has_many :attachments, :class_name => "::Attachment", :as => :attachable, :dependent => :destroy
-
   validates_presence_of :image
   
   has_attached_file :image, 
@@ -48,8 +46,10 @@ class Image < ActiveRecord::Base
 
 
   #
-  # Content item
+  # Attachable
   #
+
+  has_many :attachments, :class_name => "::Attachment", :as => :attachable, :dependent => :destroy
   
   named_scope :with_keyword, lambda {|q| {:conditions => ["alt LIKE ?", "%#{q}%"]} }
   named_scope :excluding_ids, lambda {|ids| {:conditions => ["id NOT IN (?)", ids]} }

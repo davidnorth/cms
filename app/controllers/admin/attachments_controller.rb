@@ -3,6 +3,7 @@ class Admin::AttachmentsController < Admin::BaseController
   belongs_to :page
   
   create.wants.js { render :action => "create" }
+  create.flash nil
 
   def batch_update
     params[:attachments].each do |attachment_id, attributes|
@@ -25,10 +26,7 @@ class Admin::AttachmentsController < Admin::BaseController
     @page = parent_object
     params[:type] ||= 'image'
     @klass = params[:type].camelize.constantize
-    
-    
     existing_ids = @page.attachments.of_type(@klass.to_s).map(&:attachable_id)
-    
     @content_items = @klass.excluding_ids(existing_ids).with_keyword(params[:q]).paginate(:page => params[:page], :per_page => 20)
   end
   

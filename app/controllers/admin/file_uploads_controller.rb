@@ -20,4 +20,12 @@ class Admin::FileUploadsController < Admin::BaseController
     admin_file_uploads_url(:popup => params[:popup])
   end
 
+  def list_columns
+    [:title, :file_name]
+  end
+
+  def human_model_name
+    'File'
+  end
+  
 end

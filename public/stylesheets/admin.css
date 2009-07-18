@@ -139,7 +139,8 @@ fieldset {
   padding: 20px;
 }
 label {
-  color: #444;
+  color: #222;
+  font-weight: bold;
 }
 
 textarea {

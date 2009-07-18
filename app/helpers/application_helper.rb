@@ -4,6 +4,10 @@ module ApplicationHelper
     !rails_asset_id(source).blank?
   end
 
+  def current_object
+    controller.try(:object)
+  end
+
   def partial(name, locals = {})
     locals = {:object => object || nil}.update(locals)
     render(:partial => name, :locals => locals)

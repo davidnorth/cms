@@ -1,11 +1,19 @@
 <%= hidden_field_tag :popup, params[:popup] %>
 <fieldset>
   
-  <p class="title">
-    <%= f.label :title %><br />
-    <%= f.text_field :title, :size => 60, :class => 'large' %>
+  <p>
+    <%= f.label :title %> (optional, defaults to file name)<br />
+    <%= f.text_field :title, :size => 60 %>
     <%= f.error_message_on :title %>    
   </p>
+
+  <% if current_object.new_record? %>
+  <p>
+    <%= f.label :file %><br />
+    <%= f.file_field :file %>
+    <%= f.error_message_on :file %>    
+  </p>    
+  <% end %>
 
   <%= render 'admin/generic/resource_buttons' %>
 </fieldset>
