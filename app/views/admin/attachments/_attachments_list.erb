@@ -4,9 +4,9 @@
   <br clear="left" />
 </fieldset>
 
+<% form_tag batch_update_admin_page_attachments_path, :method => :put do %>
 <fieldset>
   <legend>Files</legend>
-
   <table class="index sortable" id="content_items">
     <tr class="nodrop nodrag">
       <th colspan="2">Title</th>
@@ -18,9 +18,9 @@
       <tr id="<%= dom_id content_item %>">
         <td width="20">
           <%= image_tag(content_item.thumb_url('small')) %>
-          <%= text_field_tag "content_item_#{content_item.id}_position", attachment.position, :size => 3 %>
         </td>
         <td>
+          <%= text_field_tag "attachments[#{attachment.id}][position]", attachment.position, :size => 2, :class => 'position' %>
           <%= content_item.title %>
         </td>
         <td>
@@ -35,4 +35,9 @@
     <% end %>
     </tr>
   </table>
+  <p class="buttons">
+    <%= button "Save changes", :icon => 'tick' %>
+  </p>
 </fieldset>
+
+<% end %>

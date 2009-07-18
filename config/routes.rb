@@ -13,7 +13,7 @@ ActionController::Routing::Routes.draw do |map|
       :add_file_upload => :post, :delete_file_upload => :post, 
       :add_image => :post, :delete_image => :post, :reorder_images => :post, :sitemap => :get
       } do |pages|
-      pages.resources :attachments, :collection => {:reorder => :post, :search => :get}
+      pages.resources :attachments, :collection => {:reorder => :post, :search => :get, :batch_update => :put}
     end
     admin.resources :images, :member => {:crop_settings => :get}
     admin.resources :file_uploads

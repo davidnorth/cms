@@ -30,21 +30,9 @@ $(document).ready(function(){
   $("body").ajaxComplete(function(){
 
     $("#content_browser .pagination a").ajaxGetLink($("#content_browser .results"));
+    doContentLoaded();
 
   })
-
-
-  $('table.sortable').tableDnD({
-    onDragStyle: {'color': '#ff0000'},
-    onDrop: function(table,rows){ 
-      var i = 0;
-      $(table.tBodies[0].rows).each(function(){
-        $(this).find('input').val(i);
-        i++;
-      });
-    },
-    serializeRegexp: /[^_]*$/ 
-  });
   
   doContentLoaded();
   
@@ -73,6 +61,17 @@ function doContentLoaded()
       $.post(url, data );
       }
   });  
+
+  $('table.sortable').tableDnD({
+    onDrop: function(table,rows){ 
+      var i = 0;
+      $(table.tBodies[0].rows).each(function(){
+        $(this).find('input.position').val(i);
+        i++;
+      });
+    },
+    serializeRegexp: /[^_]*$/ 
+  }).find('input.position').hide();
 
 }
 
