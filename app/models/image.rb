@@ -60,5 +60,9 @@ class Image < ActiveRecord::Base
   def title
     alt
   end
+  
+  def details
+    image_file_name
+  end
 
 end

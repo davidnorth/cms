@@ -200,7 +200,7 @@ ul.errors li {
 
 /* index table */
 
-table.index {
+table {
   border-collapse: collapse;
   border-spacing: 0;
   font-size: 90%;
@@ -211,13 +211,13 @@ table.index {
 table.index tr:hover td {
   background-color: #ffd;
 }
-table.index th {
+table th {
   text-align: left;
   background-color: #f5f5f5;
   font-size: 90%;
   font-weight: normal;
 }
-table.index th, table.index td {
+table th, table td {
   padding: 4px;
   border-bottom: 1px solid #eaeaea;
 }
@@ -526,4 +526,10 @@ button.positive, .buttons a.positive{
 #content_browser .results .content_item {
   margin-bottom:10px;
   border-bottom: 1px solid #ccc;
+}
+
+
+
+.tDnD_whileDrag {
+  background-color:#eee;
 }

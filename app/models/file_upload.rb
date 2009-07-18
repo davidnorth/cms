@@ -27,7 +27,7 @@ class FileUpload < ActiveRecord::Base
   end
 
   def details
-  #  <%= number_to_human_size File.size(content_item.file.path) %>
-  #  (<%= content_item.file.content_type %>)
+    file.content_type
   end
+  
 end

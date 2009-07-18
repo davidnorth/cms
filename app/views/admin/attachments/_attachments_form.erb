@@ -4,7 +4,7 @@
   
   <% if attachments.any? %>
 
-    <table class="index sortable" id="content_items">
+    <table class="sortable" id="content_items">
       <tr class="nodrop nodrag">
         <th colspan="2">Title</th>
         <th>Details</th>
@@ -21,7 +21,7 @@
             <%= content_item.title %>
           </td>
           <td>
-            Details
+            <%= content_item.details %>
           </td>
           <td class="actions" width="100">
             <label>
