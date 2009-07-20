@@ -535,3 +535,12 @@ button.positive, .buttons a.positive{
 .tDnD_whileDrag {
   background-color:#eee;
 }
+
+
+.tip {
+  background: url(../images/admin/icons/help.png) no-repeat;
+  padding: 0 0 0 18px;
+  color: #4271AA;
+  font-size: 90%;
+  font-style: italic;
+}

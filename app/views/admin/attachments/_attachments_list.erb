@@ -1,5 +1,7 @@
 <% form_tag batch_update_admin_page_attachments_path, :method => :put do %>
 
+  <p class="tip">You can drag these items to change their display order.</p>
+  
   <%= render 'attachments_form', :attachments => @page.attachments.of_type('Image'), :legend => 'Images' %>
 
   <%= render 'attachments_form', :attachments => @page.attachments.of_type('FileUpload'), :legend => 'Files' %>
