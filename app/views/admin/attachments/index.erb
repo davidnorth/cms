@@ -1,5 +1,5 @@
 <p>
-  <%= link_to_with_icon 'add', 'Upload a new attachment', new_admin_page_attachment_path(@page) %> &nbsp; 
+  <%= link_to_with_icon 'add', 'Upload a new attachment', new_admin_page_attachment_path(@page), :class => 'dialog_link', :id => 'new_attachment' %> &nbsp; 
 </p>
 
 <div class="clearfix">
@@ -18,4 +18,11 @@
   <%= render 'attachments_list' %>  
 </div>
 
+</div>
+
+
+
+
+<div class="dialog" id="new_attachment_dialog" title="Upload new attachment">
+  <%= render 'new_attachment_form' %>
 </div>

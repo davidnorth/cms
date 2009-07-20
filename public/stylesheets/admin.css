@@ -164,6 +164,9 @@ form .title input {
   margin-bottom: 10px;
 }
 
+input.fullwidth {
+  width:98%;
+}
 
 
 

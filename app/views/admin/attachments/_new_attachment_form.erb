@@ -1,0 +1,30 @@
+<% create_form :multipart => true do |f| %>
+
+  <fieldset>
+    
+    <p>
+      <%= f.label :attachable_type, 'Type of attachment' %><br />
+      <%= f.select :attachable_type, [['Image', 'Image'], ['File', 'FileUpload']] %>
+    </p>
+
+    <p>
+      <%= label :attachable, :title %><br />
+      <%= text_field :attachable, :title, :size => 60, :class => 'fullwidth' %>
+    </p>
+
+    <p>
+      <%= label :attachable, :file %><br />
+      <%= file_field :attachable, :file %>
+
+      <% if @attachment and @attachment.errors.on(:attachable) %>
+      <span class="formError"><%= @attachable.errors.full_messages %></span>
+      <% end %>
+    </p>    
+
+    <p class="buttons">
+      <%= button 'Add attachment' %>
+    </p>
+
+  </fieldset>
+
+<% end %>

@@ -26,17 +26,6 @@ $(document).ready(function(){
 
   $("#site-map").treeTable();
 
-  $.ui.dialog.defaults.bgiframe = true;
-  $(".dialog").each(function(dialog){
-    form = $(this).find('form').get(0);
-    buttons = {};
-    $(this).find('button').each(function(){
-      buttons[this.innerHTML] = function(){ form.submit() };
-      $(this).remove();
-    })
-    $(this).dialog({ autoOpen: false, buttons: buttons, resizeable: true })
-  });
-
   $("body").ajaxComplete(function(){
 
     $("#content_browser .pagination a").ajaxGetLink($("#content_browser .results"));
@@ -79,6 +68,22 @@ function doContentLoaded()
     serializeRegexp: /[^_]*$/ 
   }).find('input.position').hide();
 
+
+  $.ui.dialog.defaults.bgiframe = true;
+  $(".dialog").each(function(dialog){
+    form = $(this).find('form').get(0);
+    buttons = {};
+    $(this).find('button').each(function(){
+      buttons[this.innerHTML] = function(){ form.submit() };
+      $(this).remove();
+    })
+    $(this).dialog({ autoOpen: false, buttons: buttons, resizeable: true, width: 400})
+  });
+
+  $('a.dialog_link').click(function(){
+    $('#new_attachment_dialog').dialog('open');
+    return false;
+  })
 }
 
 
