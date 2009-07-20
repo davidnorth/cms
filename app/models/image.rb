@@ -45,13 +45,26 @@ class Image < ActiveRecord::Base
   end
 
 
+  before_create :set_title_if_necessary
+
+  def set_title_if_necessary
+    if title.blank?
+      self.title = image_file_name
+    end
+  end
+  
+  def file_name
+    image_file_name
+  end
+
+
   #
   # Attachable
   #
 
   has_many :attachments, :class_name => "::Attachment", :as => :attachable, :dependent => :destroy
   
-  named_scope :with_keyword, lambda {|q| {:conditions => ["alt LIKE ?", "%#{q}%"]} }
+  named_scope :with_keyword, lambda {|q| {:conditions => ["title LIKE ?", "%#{q}%"]} }
   named_scope :excluding_ids, lambda {|ids| {:conditions => ["id NOT IN (?)", ids]} }
 
 
@@ -59,10 +72,6 @@ class Image < ActiveRecord::Base
     image.url(size)
   end
     
-  def title
-    alt
-  end
-  
   def details
     image_file_name
   end

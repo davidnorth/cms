@@ -1,14 +1,5 @@
 <%= render :partial => 'menu' %>
 
 <% create_form :multipart => true do |f| %>
-<fieldset>
-  <p>
-    <%= f.label :image %> (jpeg, gif or png)<br />
-    <%= f.file_field :image %>
-    <%= f.error_message_on :image %>    
-  </p>    
-
-  <%= render 'admin/generic/resource_buttons' %>
-
-</fieldset>
+  <%= partial 'form', :f => f %>
 <% end %>

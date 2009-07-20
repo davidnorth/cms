@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090716135817) do
+ActiveRecord::Schema.define(:version => 20090720112450) do
 
   create_table "attachments", :force => true do |t|
     t.datetime "created_at"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(:version => 20090716135817) do
 
   create_table "images", :force => true do |t|
     t.datetime "created_at"
-    t.string   "alt"
+    t.string   "title"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.float    "resize",             :default => 1.0
