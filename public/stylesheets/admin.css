@@ -541,6 +541,7 @@ button.positive, .buttons a.positive{
   background: url(../images/admin/icons/help.png) no-repeat;
   padding: 0 0 0 18px;
   color: #4271AA;
+  line-height: 16px;
   font-size: 90%;
   font-style: italic;
 }

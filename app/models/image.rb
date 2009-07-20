@@ -18,6 +18,8 @@ class Image < ActiveRecord::Base
 
   SIZES = %w(thumb small medium large cropped)
 
+  alias_attribute :file, :image
+  
   after_create :store_image_dimensions_for_cropping
   
   # Sets the defaults for resize and crop settings based on the image uploaded

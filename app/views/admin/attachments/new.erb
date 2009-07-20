@@ -1,0 +1,30 @@
+<% create_form :multipart => true do |f| %>
+
+  <%= f.error_messages %>
+  
+  <fieldset>
+    
+    <p>
+      <%= f.label :attachable_type, 'Type of attachment' %><br />
+      <%= f.select :attachable_type, [['Image', 'Image'], ['File', 'FileUpload']] %>
+    </p>
+
+    <p>
+      <%= label :attachable, :title %><br />
+      <%= text_field :attachable, :title, :size => 60, :class => 'large' %>
+    </p>
+
+    <p>
+      <%= label :attachable, :file %><br />
+      <%= file_field :attachable, :file %>
+      <%= error_message_on :attachable, :file %>    
+    </p>    
+
+    <p class="buttons">
+      <%= link_button 'Cancel and go back', collection_path, :icon => 'cross', :class => 'negative' %>
+      <%= button "Upload and add to page", :icon => 'tick' %>
+    </p>
+
+  </fieldset>
+
+<% end %>
