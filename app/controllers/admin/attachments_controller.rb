@@ -3,8 +3,10 @@ class Admin::AttachmentsController < Admin::BaseController
   belongs_to :page
   
   create.wants.js { render :action => "create" }
+  create.wants.html { redirect_to edit_admin_page_path(@page, :anchor => "Attachments") }
+
   create.flash nil
-  
+
   create.before do
     if params[:attachable]
       @klass = @attachment.attachable_type.constantize

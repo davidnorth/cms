@@ -1,3 +1,5 @@
+<% @page_title = "Add new attachment to page" %>
+
 <% create_form :multipart => true do |f| %>
 
   <%= f.error_messages %>
@@ -21,7 +23,7 @@
     </p>    
 
     <p class="buttons">
-      <%= link_button 'Cancel and go back', collection_path, :icon => 'cross', :class => 'negative' %>
+      <%= link_button 'Cancel and go back', edit_admin_page_path(@page, :anchor => "Attachments"), :icon => 'cross', :class => 'negative' %>
       <%= button "Upload and add to page", :icon => 'tick' %>
     </p>
 
