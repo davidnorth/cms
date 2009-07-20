@@ -6,11 +6,12 @@ class Admin::AttachmentsController < Admin::BaseController
   create.flash nil
   
   create.before do
-    @klass = @attachment.attachable_type.constantize
-    @attachable = @klass.new(params[:attachable])
-    @attachment.attachable = @attachable
+    if params[:attachable]
+      @klass = @attachment.attachable_type.constantize
+      @attachable = @klass.new(params[:attachable])
+      @attachment.attachable = @attachable
+    end
   end
-  
 
   def batch_update
     params[:attachments].each do |attachment_id, attributes|
